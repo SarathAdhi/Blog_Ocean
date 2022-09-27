@@ -15,9 +15,7 @@ const ViewContent = () => {
 
   const [content, setContent] = useState<Content | null>(null);
 
-  if (!id) return <></>;
-
-  const contentId = id[0]!;
+  const contentId = id && id[0];
 
   const fetchContent = async () => {
     const data: Content = await axios.get(`/content?id=${contentId}`);
@@ -26,7 +24,9 @@ const ViewContent = () => {
 
   useEffect(() => {
     fetchContent();
-  }, []);
+  }, [id]);
+
+  if (!id) return <></>;
 
   if (!content) return <LoadingPage />;
 
