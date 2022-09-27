@@ -1,5 +1,20 @@
 {
   "compilerOptions": {
+    "baseUrl": "./src",
+    "paths": {
+      "@styles/*": ["styles/*"],
+      "@lib/*": ["lib/*"],
+      "@utils/*": ["utils/*"],
+      "@modules/*": ["modules/*"],
+      "@layouts/*": ["common/layouts/*"],
+      "@components/*": ["common/components/elements/*"],
+      "@elements/*": ["common/components/*"],
+      "@hoc/*": ["common/hoc/*"],
+      "types/*": ["common/types/*"],
+      "@backend/*": ["backend/*"],
+      "@apis/*": ["backend/apis/*"],
+      "@models/*": ["backend/models/*"]
+    },
     "target": "es5",
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,

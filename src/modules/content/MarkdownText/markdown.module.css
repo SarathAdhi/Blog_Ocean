@@ -1,0 +1,140 @@
+.markdown {
+  box-sizing: border-box;
+  line-height: 1.42;
+  height: 100%;
+  outline: none;
+  overflow-y: auto;
+  padding: 12px 15px;
+  tab-size: 4;
+  -moz-tab-size: 4;
+  text-align: left;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+.markdown > * {
+  cursor: text;
+}
+.markdown p,
+.markdown ol,
+.markdown ul,
+.markdown pre,
+.markdown blockquote,
+.markdown h1,
+.markdown h2,
+.markdown h3,
+.markdown h4,
+.markdown h5,
+.markdown h6 {
+  line-height: normal;
+  margin: 0;
+  padding: 0;
+  counter-reset: list-1 list-2 list-3 list-4 list-5 list-6 list-7 list-8 list-9;
+}
+.markdown ol,
+.markdown ul {
+  padding-left: 1.5em;
+}
+.markdown ol > li,
+.markdown ul > li {
+  list-style-type: none;
+}
+.markdown ul > li::before {
+  content: "\2022";
+}
+.markdown ul[data-checked="true"],
+.markdown ul[data-checked="false"] {
+  pointer-events: none;
+}
+.markdown ul[data-checked="true"] > li *,
+.markdown ul[data-checked="false"] > li * {
+  pointer-events: all;
+}
+.markdown ul[data-checked="true"] > li::before,
+.markdown ul[data-checked="false"] > li::before {
+  color: #777;
+  cursor: pointer;
+  pointer-events: all;
+}
+.markdown ul[data-checked="true"] > li::before {
+  content: "\2611";
+}
+.markdown ul[data-checked="false"] > li::before {
+  content: "\2610";
+}
+.markdown li::before {
+  display: inline-block;
+  white-space: nowrap;
+  width: 1.2em;
+}
+.markdown li::before {
+  margin-left: -1.5em;
+  margin-right: 0.3em;
+  text-align: right;
+}
+
+.markdown ol li,
+.markdown ul li {
+  padding-left: 1.5em;
+}
+
+.markdown ol li {
+  counter-reset: list-1 list-2 list-3 list-4 list-5 list-6 list-7 list-8 list-9;
+  counter-increment: list-0;
+}
+.markdown ol li:before {
+  content: counter(list-0, decimal) ". ";
+}
+
+.markdown .ql_snow h1 {
+  font-size: 2em;
+  margin-bottom: 10px;
+}
+.markdown .ql_snow h2 {
+  font-size: 1.5em;
+  margin-bottom: 10px;
+}
+.markdown .ql_snow h3 {
+  font-size: 1.17em;
+  margin-bottom: 10px;
+}
+.markdown .ql_snow h4 {
+  font-size: 1em;
+  margin-bottom: 10px;
+}
+.markdown .ql_snow h5 {
+  font-size: 0.83em;
+  margin-bottom: 10px;
+}
+.markdown .ql_snow h6 {
+  font-size: 0.67em;
+  margin-bottom: 10px;
+}
+.markdown .ql_snow a {
+  text-decoration: underline;
+  color: #06c;
+}
+.markdown .ql_snow blockquote {
+  border-left: 4px solid #ccc;
+  margin-bottom: 5px;
+  margin-top: 5px;
+  padding-left: 16px;
+}
+.markdown .ql_snow code,
+.markdown .ql_snow pre {
+  background-color: #f0f0f0;
+  border-radius: 3px;
+}
+.markdown .ql_snow pre {
+  white-space: pre-wrap;
+  margin-bottom: 5px;
+  margin-top: 5px;
+  padding: 5px 10px;
+}
+.markdown .ql_snow code {
+  font-size: 85%;
+  padding: 2px 4px;
+}
+
+.markdown .ql_snow img {
+  max-width: 100%;
+}
