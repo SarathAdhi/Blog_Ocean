@@ -1,5 +1,6 @@
 import LinkedItem from "@components/LinkedItem";
 import { H3, Label } from "@components/Text";
+import Image from "next/image";
 import React from "react";
 import { Content } from "types/Content";
 
@@ -16,12 +17,15 @@ export const ContentCard: React.FC<Content> = ({
       title={title}
     >
       <div className="flex items-center gap-2">
-        <img
-          src={owner.image}
-          className="w-7 h-7 rounded-full"
-          referrerPolicy={"no-referrer"}
-          alt={owner.username}
-        />
+        <div className="relative w-7 h-7">
+          <Image
+            src={owner.image}
+            layout="fill"
+            className="rounded-full"
+            referrerPolicy={"no-referrer"}
+            alt={owner.username}
+          />
+        </div>
 
         <Label className="font-medium">{owner.name}</Label>
       </div>

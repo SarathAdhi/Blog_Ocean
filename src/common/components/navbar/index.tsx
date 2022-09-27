@@ -37,7 +37,8 @@ const Navbar: React.FC<Component> = ({ className }) => {
         <Image
           src="/assets/blog-ocean.png"
           layout="fill"
-          className="rounded-lg w-full h-full"
+          className="rounded-lg"
+          alt="Blog Ocean"
         />
       </LinkedItem>
 
@@ -56,10 +57,11 @@ const Navbar: React.FC<Component> = ({ className }) => {
         />
       </div>
 
-      <LinkedItem href="/profile">
-        <img
+      <LinkedItem href="/profile" className="relative w-10 h-10">
+        <Image
           src={user.image}
-          className="w-10 h-10 rounded-full"
+          layout="fill"
+          className="rounded-full"
           referrerPolicy={"no-referrer"}
           alt={`Profile | ${user.name}`}
         />
