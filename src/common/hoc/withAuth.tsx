@@ -1,6 +1,6 @@
 import GoogleAuth from "@elements/GoogleAuth";
 import { userStore } from "@utils/store";
-import React, { useEffect } from "react";
+import React from "react";
 
 const withAuth =
   (Component: React.FC) =>
@@ -15,4 +15,5 @@ const withAuth =
     else return <GoogleAuth />;
   };
 
+withAuth.displayName = "withAuth";
 export default withAuth;

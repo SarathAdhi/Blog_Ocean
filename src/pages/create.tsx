@@ -49,7 +49,7 @@ const Create = () => {
     <PageLayout title="Create" className="flex flex-col gap-10">
       <div>
         <H1 className="italic">
-          Briefly tell us what you have learn't today...
+          Briefly tell us what you have learnt today...
         </H1>
       </div>
 
