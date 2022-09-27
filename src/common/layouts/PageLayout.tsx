@@ -24,11 +24,18 @@ const PageLayout: React.FC<Props & Component> = ({
         <title>{title}</title>
       </Head>
 
-      <main className="min-h-screen bg-slate-100 flex justify-center gap-5">
-        <div className="w-full max-w-[1440px] flex flex-col md:flex-row">
-          <Navbar />
+      <main className="min-h-screen bg-slate-100 flex justify-center lg:gap-5">
+        <Navbar className="col-span-1" />
 
-          <div className={clsx("w-full p-2 md:p-5", className)}>{children}</div>
+        <div className="w-full max-w-[1440px] grid lg:grid-cols-14">
+          <div
+            className={clsx(
+              "w-full p-2 md:p-5 col-span-10 xl:col-span-11",
+              className
+            )}
+          >
+            {children}
+          </div>
 
           {RightSideBar && RightSideBar}
         </div>

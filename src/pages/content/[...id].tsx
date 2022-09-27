@@ -37,14 +37,14 @@ const ViewContent = () => {
       title={title}
       RightSideBar={
         <UserSection
-          className="hidden md:block py-5 px-3 sticky top-0 w-72 h-screen border-l-[1.5px] border-gray-400/30"
+          className="col-span-4 xl:col-span-3 hidden lg:block py-5 px-3 sticky top-0 w-full h-screen border-l-[1.5px] border-gray-400/30"
           {...owner}
         />
       }
-      className="flex flex-col gap-5"
+      className="flex flex-col gap-5 box-border"
     >
       <UserSection
-        className="block md:hidden p-5 w-full rounded-lg bg-white border border-gray-400"
+        className="block lg:hidden p-5 w-full rounded-lg bg-white border border-gray-400"
         {...owner}
       />
 
