@@ -3,7 +3,7 @@ import "react-quill/dist/quill.snow.css";
 import clsx from "clsx";
 import styles from "./markdown.module.css";
 
-const MarkdownText = ({ description }: { description: string }) => {
+export const MarkdownText = ({ description }: { description: string }) => {
   return (
     <div className={clsx("text-xl", styles.markdown)}>
       <div
@@ -13,5 +13,3 @@ const MarkdownText = ({ description }: { description: string }) => {
     </div>
   );
 };
-
-export default MarkdownText;

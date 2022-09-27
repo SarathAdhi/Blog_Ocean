@@ -1,12 +1,13 @@
 import PageLayout from "@layouts/PageLayout";
+import { NextPage } from "next";
 import React from "react";
 
-const ViewProfile = () => {
+const ViewProfilePage: NextPage = () => {
   return (
     <PageLayout title="">
-      <div>ViewProfile</div>
+      <div>ViewProfilePage</div>
     </PageLayout>
   );
 };
 
-export default ViewProfile;
+export default ViewProfilePage;

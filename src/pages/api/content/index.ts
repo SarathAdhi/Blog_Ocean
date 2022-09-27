@@ -20,8 +20,19 @@ export default async function handler(
   const { id } = req.query;
 
   if (id) {
-    const content = await getContentById(id as string);
-    return res.status(200).json(content);
+    try {
+      const content = await getContentById(id as string);
+      return res.status(200).json(content);
+    } catch ({ message }) {
+      const msg = message as string;
+
+      if (msg.includes("Cast to ObjectId failed for value"))
+        return res
+          .status(404)
+          .json({ error: "Content doesn't exist. Invalid url" });
+
+      return res.status(404).json({ error: message });
+    }
   }
 
   const contents = await getContents();

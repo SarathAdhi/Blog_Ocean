@@ -1,34 +1,42 @@
-import { H4 } from "@components/Text";
 import LoadingPage from "@elements/loading/LoadingPage";
 import PageLayout from "@layouts/PageLayout";
-import axios from "@lib/axios";
+import axios, { AxiosResponse } from "@lib/axios";
 import { useRouter } from "next/router";
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { Content } from "types/Content";
 import { Heading } from "@chakra-ui/react";
-import MarkdownText from "@modules/content/MarkdownText";
-import UserSection from "@modules/content/UserSection";
+import { MarkdownText } from "@modules/content/MarkdownText";
+import { UserSection } from "@modules/content/UserSection";
+import { NextPage } from "next";
+import { ErrorPage } from "@elements/ErrorPage";
 
-const ViewContent = () => {
+const ViewContentPage: NextPage = () => {
   const router = useRouter();
-  const { id } = router.query;
-
   const [content, setContent] = useState<Content | null>(null);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+
+  const { id } = router.query;
 
   const contentId = id && id[0];
 
-  const fetchContent = async () => {
-    const data: Content = await axios.get(`/content?id=${contentId}`);
+  const fetchContent = useCallback(async () => {
+    const data: Content & AxiosResponse = await axios.get(
+      `/content?id=${contentId}`
+    );
+
     setContent(data);
-  };
+    setIsLoading(false);
+  }, [contentId]);
 
   useEffect(() => {
     fetchContent();
-  }, [id]);
+    console.log("hello");
+  }, [fetchContent]);
 
-  if (!id) return <></>;
+  if (!id || isLoading) return <LoadingPage />;
 
-  if (!content) return <LoadingPage />;
+  if (!content)
+    return <ErrorPage title="Requested Content not found" error="404" />;
 
   const { title, description, owner } = content;
 
@@ -63,4 +71,4 @@ const ViewContent = () => {
   );
 };
 
-export default ViewContent;
+export default ViewContentPage;

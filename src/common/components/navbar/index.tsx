@@ -1,5 +1,4 @@
 import LinkedItem, { LinkProps } from "@components/LinkedItem";
-import { H3 } from "@components/Text";
 import { userStore } from "@utils/store";
 import React from "react";
 import { pages } from "./pages";
@@ -30,7 +29,7 @@ const Navbar: React.FC<Component> = ({ className }) => {
   return (
     <header
       className={clsx(
-        "py-5 px-2 w-full md:w-20 h-14 md:h-screen fixed md:sticky bottom-0 md:top-0 border-t-2 rounded-t-lg md:rounded-none md:border-r border-gray-300 flex md:flex-col items-center justify-between",
+        "py-5 px-2 w-full bg-white md:bg-transparent md:w-20 h-14 md:h-screen sticky bottom-0 md:top-0 border-t-2 rounded-t-lg md:rounded-none md:border-r border-gray-300 flex md:flex-col items-center justify-between",
         className
       )}
     >
@@ -52,7 +51,7 @@ const Navbar: React.FC<Component> = ({ className }) => {
         <NavLink
           className="md:mt-3"
           name="Create"
-          href="/create"
+          href="/content/create"
           Icon={PencilAltIcon}
         />
       </div>
@@ -62,6 +61,7 @@ const Navbar: React.FC<Component> = ({ className }) => {
           src={user.image}
           className="w-10 h-10 rounded-full"
           referrerPolicy={"no-referrer"}
+          alt={`Profile | ${user.name}`}
         />
       </LinkedItem>
     </header>

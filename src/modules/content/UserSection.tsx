@@ -6,7 +6,7 @@ import { User } from "types/User";
 
 type Props = {} & User;
 
-const UserSection: React.FC<Props & Component> = ({
+export const UserSection: React.FC<Props & Component> = ({
   image,
   bio,
   username,
@@ -15,9 +15,10 @@ const UserSection: React.FC<Props & Component> = ({
   <div className={clsx("", className)}>
     <div className="flex md:flex-col items-center gap-5 md:gap-2">
       <img
-        className="w-20 h-20 md:w-32 md:h-32 rounded-full"
         src={image}
+        className="w-20 h-20 md:w-32 md:h-32 rounded-full"
         referrerPolicy={"no-referrer"}
+        alt={`Profile | ${username}`}
       />
 
       <div>
@@ -27,5 +28,3 @@ const UserSection: React.FC<Props & Component> = ({
     </div>
   </div>
 );
-
-export default UserSection;
