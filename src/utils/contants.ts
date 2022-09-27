@@ -1,0 +1,3 @@
+// constants
+
+export const CONSTANTS = [];
