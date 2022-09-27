@@ -1,19 +1,21 @@
 import withAuth from "@hoc/withAuth";
 import PageLayout from "@layouts/PageLayout";
 import axios from "@lib/axios";
-import { ContentCard } from "@modules/home/ContentCard";
+import { HomeComponent } from "@modules/home";
 import type { NextPage } from "next";
 import { useCallback, useEffect, useState } from "react";
 import { Content } from "types/Content";
 
 const Home: NextPage = () => {
   const [contents, setContents] = useState<Content[]>([]);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
 
   // useCallback is used here to isolate this function.This will not automatically run on every render.
   // performance improvement
   const fetchContents = useCallback(async () => {
     const data: Content[] = await axios.get("/content");
     setContents(data);
+    setIsLoading(false);
   }, []);
 
   useEffect(() => {
@@ -22,11 +24,7 @@ const Home: NextPage = () => {
 
   return (
     <PageLayout title="Home" className="">
-      <div className="grid gap-4">
-        {contents.map((content) => (
-          <ContentCard key={content._id} {...content} />
-        ))}
-      </div>
+      <HomeComponent contents={contents} isLoading={isLoading} />
     </PageLayout>
   );
 };
