@@ -18,8 +18,6 @@ const PageLayout: React.FC<Props & Component> = ({
 }) => {
   const { user } = userStore((state) => state);
 
-  // console.log(user);
-
   return (
     <>
       <Head>
@@ -27,10 +25,10 @@ const PageLayout: React.FC<Props & Component> = ({
       </Head>
 
       <main className="min-h-screen bg-slate-100 flex justify-center gap-5">
-        <div className="w-full max-w-[1440px] flex">
+        <div className="w-full max-w-[1440px] flex flex-col md:flex-row">
           <Navbar />
 
-          <div className={clsx("w-full p-5", className)}>{children}</div>
+          <div className={clsx("w-full p-2 md:p-5", className)}>{children}</div>
 
           {RightSideBar && RightSideBar}
         </div>

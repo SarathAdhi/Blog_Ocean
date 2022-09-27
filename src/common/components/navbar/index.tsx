@@ -25,18 +25,18 @@ const Navbar = () => {
   const { user } = userStore((state) => state);
 
   return (
-    <header className="md:py-5 px-2 h-screen sticky top-0 border-r border-gray-300 flex flex-col items-center justify-between">
+    <header className="py-5 px-2 w-full md:w-auto h-14 bg-white md:h-screen fixed md:sticky bottom-0 md:top-0 border-t-2 rounded-t-lg md:rounded-none md:border-r border-gray-300 flex md:flex-col items-center justify-between">
       <H3>PIT</H3>
 
-      <div className="grid gap-y-3 divide-y-2">
-        <div className="grid gap-1">
+      <div className="flex md:flex-col gap-4 md:divide-y-2">
+        <div className="flex md:flex-col gap-1">
           {pages.map((page) => (
             <NavLink key={page.name} {...page} />
           ))}
         </div>
 
         <NavLink
-          className="mt-3"
+          className="md:mt-3"
           name="Create"
           href="/create"
           Icon={PencilAltIcon}
