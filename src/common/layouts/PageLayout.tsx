@@ -19,6 +19,19 @@ const PageLayout: React.FC<Props & Component> = ({
     <>
       <Head>
         <title>{title}</title>
+        <meta
+          name="description"
+          content="Convert your learning into blog post and help someone out there. Blog Ocean helps developers to resolve or learn something new."
+        />
+        <meta name="og:title" property="og:title" content={title} />
+        <meta name="og:description" property="og:description" content={title} />
+        <meta
+          name="og:description"
+          property="og:description"
+          content="Convert your learning into blog post and help someone out there. Blog Ocean helps developers to resolve or learn something new."
+        />
+        {/* <meta name="robots" content="index, follow" /> */}
+        {/* After Production */}
       </Head>
 
       <main className="min-h-screen bg-slate-100 flex flex-col-reverse md:flex-row justify-between md:justify-center lg:gap-5">

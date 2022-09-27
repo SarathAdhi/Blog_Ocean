@@ -39,6 +39,7 @@ const Navbar: React.FC<Component> = ({ className }) => {
           layout="fill"
           className="rounded-lg"
           alt="Blog Ocean"
+          priority
         />
       </LinkedItem>
 
@@ -64,6 +65,7 @@ const Navbar: React.FC<Component> = ({ className }) => {
           className="rounded-full"
           referrerPolicy={"no-referrer"}
           alt={`Profile | ${user.name}`}
+          priority
         />
       </LinkedItem>
     </header>

@@ -4,7 +4,7 @@ import TextArea from "@components/TextArea";
 import Modal from "@elements/Modal";
 import axios, { AxiosResponse } from "@lib/axios";
 import { userStore } from "@utils/store";
-import React from "react";
+import React, { useEffect } from "react";
 import toast from "react-hot-toast";
 
 type Props = {
@@ -39,6 +39,12 @@ const handleSubmit = async (
 export const EditProfileModal: React.FC<Props> = ({ isOpen, setIsOpen }) => {
   const { user, getProfile } = userStore();
   const { username, bio } = user;
+
+  const isProfileCompleted = !(username && bio);
+
+  useEffect(() => {
+    setIsOpen(isProfileCompleted);
+  }, []);
 
   return (
     <Modal title="Edit Profile" isOpen={isOpen} setIsOpen={setIsOpen}>

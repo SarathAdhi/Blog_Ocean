@@ -11,31 +11,33 @@ export const ContentCard: React.FC<Content> = ({
   description,
 }) => {
   return (
-    <LinkedItem
-      href={`/content/${_id}/${title.toLowerCase().replaceAll(" ", "-")}`}
-      className="group bg-gray-200 w-full max-h-52 p-4 flex flex-col gap-3 rounded-lg overflow-hidden duration-200 hover:shadow-lg"
-      title={title}
-    >
-      <div className="flex items-center gap-2">
-        <div className="relative w-7 h-7">
-          <Image
-            src={owner.image}
-            layout="fill"
-            className="rounded-full"
-            referrerPolicy={"no-referrer"}
-            alt={owner.username}
-          />
+    <article className="group bg-gray-200 w-full p-4 rounded-lg overflow-hidden duration-200 hover:shadow-lg">
+      <LinkedItem
+        href={`/content/${_id}/${title.toLowerCase().replaceAll(" ", "-")}`}
+        className="flex flex-col gap-3 max-h-52 "
+        title={title}
+      >
+        <div className="flex items-center gap-2">
+          <div className="relative w-7 h-7">
+            <Image
+              src={owner.image}
+              layout="fill"
+              className="rounded-full"
+              referrerPolicy={"no-referrer"}
+              alt={owner.username}
+            />
+          </div>
+
+          <Label className="font-medium">{owner.name}</Label>
         </div>
 
-        <Label className="font-medium">{owner.name}</Label>
-      </div>
+        <H3 className="!font-bold !leading-none w-full">{title}</H3>
 
-      <H3 className="!font-bold !leading-none w-full">{title}</H3>
-
-      <div
-        className="truncate"
-        dangerouslySetInnerHTML={{ __html: description }}
-      />
-    </LinkedItem>
+        <div
+          className="truncate"
+          dangerouslySetInnerHTML={{ __html: description }}
+        />
+      </LinkedItem>
+    </article>
   );
 };
