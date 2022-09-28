@@ -34,14 +34,14 @@ const PageLayout: React.FC<Props & Component> = ({
         {/* After Production */}
       </Head>
 
-      <main className="min-h-screen bg-slate-100 flex flex-col-reverse md:flex-row justify-between md:justify-center lg:gap-5">
+      <main className="min-h-screen bg-slate-100 flex flex-col-reverse md:flex-row justify-between md:justify-center">
         <Navbar className="col-span-1" />
 
-        <div className="w-full max-w-[1440px] grid lg:grid-cols-14">
+        <div className="flex-1 w-full max-w-[1440px] grid lg:grid-cols-15">
           <div
             className={clsx(
               "w-full p-2 md:p-5",
-              RightSideBar ? "col-span-10 xl:col-span-11" : "col-span-14",
+              RightSideBar ? "col-span-11 xl:col-span-12" : "col-span-15",
               className
             )}
           >

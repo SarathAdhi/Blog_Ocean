@@ -8,6 +8,9 @@ import { googleLogout } from "@react-oauth/google";
 import { NextRouter, useRouter } from "next/router";
 import { NextPage } from "next";
 import { EditProfileModal } from "@modules/profile/EditProfileModal";
+import { H1, H2, H3, Label } from "@components/Text";
+import { userStore } from "@utils/store";
+import Image from "next/image";
 
 const handleLogout = async (router: NextRouter) => {
   localStorage.removeItem("token");
@@ -18,12 +21,32 @@ const handleLogout = async (router: NextRouter) => {
 
 const ProfilePage: NextPage = () => {
   const router = useRouter();
-
   const [isOpen, setIsOpen] = useState(false);
+
+  const { user } = userStore();
+
+  const { email, image, bio, username } = user;
 
   return (
     <>
-      <PageLayout title="My Profile" className="flex gap-2">
+      <PageLayout title="My Profile" className="flex flex-col gap-2">
+        <div className="flex items-start gap-4">
+          <div className="relative w-32 h-32">
+            <Image
+              src={image}
+              layout="fill"
+              className="rounded-full"
+              title={`${username} Image`}
+              alt={`${username} Image`}
+            />
+          </div>
+
+          <div>
+            <H2>{username}</H2>
+            <Label className="!text-lg text-gray-500">{bio}</Label>
+          </div>
+        </div>
+
         <Button
           padding={"2"}
           color={"white"}

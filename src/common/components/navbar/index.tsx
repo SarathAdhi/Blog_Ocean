@@ -29,7 +29,7 @@ const Navbar: React.FC<Component> = ({ className }) => {
   return (
     <header
       className={clsx(
-        "py-5 px-2 w-full bg-white md:bg-transparent md:w-20 h-14 md:h-screen sticky bottom-0 md:top-0 border-t-2 rounded-t-lg md:rounded-none md:border-r border-gray-300 flex md:flex-col items-center justify-between",
+        "z-50 py-5 px-2 w-full bg-white md:bg-transparent md:w-20 h-14 md:h-screen sticky bottom-0 md:top-0 border-t-2 rounded-t-lg md:rounded-none md:border-r border-gray-300 flex md:flex-col items-center justify-between",
         className
       )}
     >
@@ -60,7 +60,7 @@ const Navbar: React.FC<Component> = ({ className }) => {
 
       <LinkedItem href="/profile" className="relative w-10 h-10">
         <Image
-          src={user.image}
+          src={user.image || "/assets/default-user-img.png"}
           layout="fill"
           className="rounded-full"
           referrerPolicy={"no-referrer"}

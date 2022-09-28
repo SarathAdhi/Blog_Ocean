@@ -8,4 +8,6 @@ export type User = {
   _id?: string;
   username: string;
   bio: string;
+  followers: User[];
+  following: User[];
 } & NewUser;

@@ -16,7 +16,7 @@ export default async function handler(
 
   const userInfo = await getUserByEmail(userDetails.email as string);
 
-  if (userInfo._id) {
+  if (userInfo?._id) {
     return res.status(200).json({ message: "", user: userInfo });
   }
 

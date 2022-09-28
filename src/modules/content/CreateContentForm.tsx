@@ -54,19 +54,6 @@ export const CreateContentForm = () => {
 
   return (
     <div className="h-full flex flex-col items-end gap-4">
-      <Button
-        className="text-white"
-        color={"white"}
-        bgColor={"green.500"}
-        _hover={{ bgColor: "green.400" }}
-        _active={{ bgColor: "green.600" }}
-        onClick={() =>
-          handleSubmit({ title, setTitle, description, setDescription })
-        }
-      >
-        Publish
-      </Button>
-
       <div className="w-full h-full flex flex-col gap-4">
         <Input
           placeholder="Enter your title"
@@ -85,6 +72,19 @@ export const CreateContentForm = () => {
           placeholder="Enter your content here..."
         />
       </div>
+
+      <Button
+        className="text-white"
+        color={"white"}
+        bgColor={"green.500"}
+        _hover={{ bgColor: "green.400" }}
+        _active={{ bgColor: "green.600" }}
+        onClick={() =>
+          handleSubmit({ title, setTitle, description, setDescription })
+        }
+      >
+        Publish
+      </Button>
     </div>
   );
 };

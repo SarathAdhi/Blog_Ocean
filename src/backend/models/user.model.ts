@@ -21,6 +21,18 @@ const User = new Schema({
   bio: {
     type: String,
   },
+  following: {
+    type: [Schema.Types.ObjectId],
+    ref: "User",
+    default: [],
+  },
+
+  followers: {
+    type: [Schema.Types.ObjectId],
+    ref: "User",
+    default: [],
+    unique: true,
+  },
 });
 
 const UserModel = models.User || model("User", User);

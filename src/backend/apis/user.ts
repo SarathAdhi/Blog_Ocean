@@ -31,24 +31,29 @@ export const getUsers = async () => {
   return await UserModel.find();
 };
 
+export const userFilter = async (filter: any) => {
+  await db();
+  return await UserModel.find(filter);
+};
+
 export const getUserById = async (id: User["_id"]) => {
   await db();
-  return await UserModel.findById(id);
+  return await UserModel.findById(id).populate("followers");
 };
 
 export const getUserByEmail = async (email: User["email"]) => {
   await db();
-  return await UserModel.findOne({ email });
+  return await UserModel.findOne({ email }).populate("followers");
 };
 
 export const getUserByUsername = async (username: User["username"]) => {
   await db();
-  return await UserModel.findOne({ username });
+  return await UserModel.findOne({ username }).populate("followers");
 };
 
-export const updateUserProfile = async (_id: User["_id"], update: User) => {
+export const updateUserProfile = async (_id: User["_id"], update: any) => {
   await db();
 
   const filter = { _id };
-  return await UserModel.findOneAndUpdate(filter, update);
+  return await UserModel.findOneAndUpdate(filter, update).populate("followers");
 };

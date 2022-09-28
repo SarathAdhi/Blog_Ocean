@@ -13,12 +13,12 @@ export default async function handler(
   const user = await getUserByEmail(userDetails.email as string);
 
   if (user) {
-    return res.status(200).json({ message: "Login successfully.", user: user });
+    return res.status(200).json({ message: "Login successfully.", user });
   }
 
-  await createUser(userDetails);
+  const newUser = await createUser(userDetails);
 
   return res
     .status(200)
-    .json({ message: "User created successfully.", user: userDetails });
+    .json({ message: "User created successfully.", user: newUser });
 }

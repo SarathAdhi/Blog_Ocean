@@ -28,10 +28,13 @@ export default async function handler(
 
   switch (method) {
     case "GET":
-      const { id } = req.query;
+      const { id, username: name } = req.query;
 
       if (id) {
         const user = await getUserById(id as string);
+        return res.status(200).json(user);
+      } else if (name) {
+        const user = await getUserByUsername(name as string);
         return res.status(200).json(user);
       }
 
