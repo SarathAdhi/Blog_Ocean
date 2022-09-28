@@ -32,7 +32,7 @@ export const ViewFollowersModal: React.FC<Props> = ({
     <Modal title="Edit Profile" isOpen={isOpen} setIsOpen={setIsOpen}>
       {followers.map((follower) => (
         <div key={follower._id} className="flex items-center justify-between">
-          <div className="flex items-start gap-2">
+          <div className="flex items-start gap-4">
             <div className="relative w-14 h-14">
               <Image
                 src={follower.image}

@@ -73,7 +73,7 @@ const ViewProfilePage: NextPage = () => {
 
               <Label
                 onClick={() => setIsOpen(true)}
-                className="!text-base text-gray-400"
+                className="!text-base text-gray-400 cursor-pointer hover:underline"
               >
                 {followers?.length} Followers
               </Label>
