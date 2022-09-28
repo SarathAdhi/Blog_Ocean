@@ -29,9 +29,11 @@ export default async function handler(
 
     // For following the user
     if (isUserFollowing.length === 0) {
-      const update = { $push: { followers: userInfo._id } };
+      const updateFollowers = { $push: { followers: userInfo._id } };
+      const updateFollowing = { $push: { following: id } };
 
-      await updateUserProfile(id as string, update);
+      await updateUserProfile(id as string, updateFollowers);
+      await updateUserProfile(userInfo._id as string, updateFollowing);
     }
     // For unfollowing the user
     else {

@@ -30,7 +30,6 @@ const ViewContentPage: NextPage = () => {
 
   useEffect(() => {
     fetchContent();
-    console.log("hello");
   }, [fetchContent]);
 
   if (!id || isLoading) return <LoadingPage />;

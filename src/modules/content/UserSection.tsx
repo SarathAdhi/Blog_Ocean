@@ -1,3 +1,4 @@
+import LinkedItem from "@components/LinkedItem";
 import { H3, Label } from "@components/Text";
 import clsx from "clsx";
 import Image from "next/image";
@@ -25,8 +26,11 @@ export const UserSection: React.FC<Props & Component> = ({
         />
       </div>
 
-      <div>
-        <H3 className="font-bold md:text-center">{username}</H3>
+      <div className="grid gap-1">
+        <LinkedItem href={`/profile/${username}`} className="hover:underline">
+          <H3 className="font-bold md:text-center">{username}</H3>
+        </LinkedItem>
+
         <Label className="md:text-center">{bio}</Label>
       </div>
     </div>

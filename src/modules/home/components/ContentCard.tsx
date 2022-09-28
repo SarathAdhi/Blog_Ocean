@@ -28,7 +28,7 @@ export const ContentCard: React.FC<Content> = ({
             />
           </div>
 
-          <Label className="font-medium">{owner.name}</Label>
+          <Label className="font-medium">{owner.username}</Label>
         </div>
 
         <H3 className="!font-bold !leading-none w-full">{title}</H3>
