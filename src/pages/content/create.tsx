@@ -20,9 +20,7 @@ const CreatePage: NextPage = () => {
       toast.error("Please complete your profile.");
       router.push("/profile");
     }
-  }, []);
-
-  console.log(isProfileComplete);
+  }, [router.isReady]);
 
   return (
     <PageLayout title="Create" className="flex flex-col gap-10">

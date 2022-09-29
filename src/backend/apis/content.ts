@@ -14,5 +14,11 @@ export const getContents = async () => {
 
 export const getContentById = async (_id: User["_id"]) => {
   await db();
-  return await ContentModel.findOne({ _id }).populate("owner");
+  const content = await ContentModel.findOne({ _id }).populate("owner");
+  return await content.populate("owner.followers");
+};
+
+export const getContentsByUserId = async (owner: User["_id"]) => {
+  await db();
+  return await ContentModel.find({ owner }).populate("owner");
 };

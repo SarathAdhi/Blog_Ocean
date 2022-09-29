@@ -37,22 +37,24 @@ const ViewContentPage: NextPage = () => {
   if (!content)
     return <ErrorPage title="Requested Content not found" error="404" />;
 
-  const { title, description, owner } = content;
+  const { title, description } = content;
 
   return (
     <PageLayout
       title={title}
       RightSideBar={
         <UserSection
-          className="col-span-4 xl:col-span-3 hidden lg:block py-5 px-3 sticky top-0 w-full h-screen border-l-[1.5px] border-gray-400/30"
-          {...owner}
+          className="col-span-4 xl:col-span-3 hidden lg:flex py-5 px-3 sticky top-0 w-full h-screen border-l-[1.5px] border-gray-400/30"
+          {...content}
+          fetchContent={fetchContent}
         />
       }
       className="flex flex-col gap-5 box-border"
     >
       <UserSection
-        className="block lg:hidden p-5 w-full rounded-lg bg-white border border-gray-400"
-        {...owner}
+        className="flex lg:hidden p-5 w-full rounded-lg bg-white border border-gray-400"
+        {...content}
+        fetchContent={fetchContent}
       />
 
       <div className="flex flex-col gap-10">

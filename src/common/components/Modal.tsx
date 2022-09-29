@@ -24,6 +24,7 @@ const Modal: React.FC<Props & Component> = ({
   setIsOpen,
   children,
   ModalFooterChildren,
+  className,
 }) => {
   return (
     <ChakraModal
@@ -42,7 +43,7 @@ const Modal: React.FC<Props & Component> = ({
 
         <ModalCloseButton />
 
-        <ModalBody>{children}</ModalBody>
+        <ModalBody className={className}>{children}</ModalBody>
 
         <ModalFooter>
           {ModalFooterChildren && <ModalFooterChildren />}

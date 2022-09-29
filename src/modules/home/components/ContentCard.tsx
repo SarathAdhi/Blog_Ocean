@@ -9,7 +9,11 @@ export const ContentCard: React.FC<Content> = ({
   title,
   owner,
   description,
+  createdAt,
 }) => {
+  const date = `${new Date(createdAt)}`;
+  const dateString = date.split(" ").slice(1, 4).join(" ");
+
   return (
     <article className="group bg-gray-200 w-full p-4 rounded-lg overflow-hidden duration-200 hover:shadow-lg">
       <LinkedItem
@@ -28,7 +32,11 @@ export const ContentCard: React.FC<Content> = ({
             />
           </div>
 
-          <Label className="font-medium">{owner.username}</Label>
+          <Label className="font-medium flex items-center gap-2">
+            <span>{owner.username}</span>
+            <span>|</span>
+            <span>{dateString}</span>
+          </Label>
         </div>
 
         <H3 className="!font-bold !leading-none w-full">{title}</H3>
