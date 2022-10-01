@@ -64,6 +64,7 @@ export const EditProfileModal: React.FC<Props> = ({ isOpen, setIsOpen }) => {
           label="Bio"
           placeholder="FDE Developer @Amazon"
           defaultValue={bio}
+          maxLength={50}
           isRequired
         />
 

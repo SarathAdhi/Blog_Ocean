@@ -1,7 +1,6 @@
 import {
   FormControl,
   Textarea as ChakraTextArea,
-  InputProps,
   TextareaProps,
 } from "@chakra-ui/react";
 import FormFieldWrapper from "@layouts/FormFieldWrapper";
@@ -21,6 +20,7 @@ const TextArea: React.FC<Props> = ({
     <FormControl isRequired={isRequired}>
       <FormFieldWrapper name={label}>
         <ChakraTextArea
+          p={2}
           _disabled={{
             color: "gray.600",
             bgColor: "gray.100",

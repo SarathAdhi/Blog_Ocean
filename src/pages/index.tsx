@@ -1,4 +1,3 @@
-import withAuth from "@hoc/withAuth";
 import PageLayout from "@layouts/PageLayout";
 import axios from "@lib/axios";
 import { HomeComponent } from "@modules/home";
@@ -29,4 +28,4 @@ const Home: NextPage = () => {
   );
 };
 
-export default withAuth(Home);
+export default Home;

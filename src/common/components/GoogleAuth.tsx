@@ -6,6 +6,7 @@ import { User } from "types/User";
 import PageLayout from "@layouts/PageLayout";
 import { userStore } from "@utils/store";
 import { useRouter } from "next/router";
+import { H1, H3, Label, P } from "@components/Text";
 
 type ResponseProps = {
   user: User;
@@ -37,7 +38,15 @@ const GoogleAuth: React.FC = () => {
   };
 
   return (
-    <PageLayout title="Login">
+    <PageLayout
+      title="Login"
+      className="grid place-content-center justify-items-center gap-4"
+    >
+      <div className="text-center">
+        <H1 className="">Login to continue</H1>
+        <Label>{"(One click login)"}</Label>
+      </div>
+
       <GoogleLogin
         onSuccess={onSuccess}
         onError={() => {
@@ -45,6 +54,8 @@ const GoogleAuth: React.FC = () => {
           toast.error("Login Failed");
         }}
         useOneTap
+        auto_select
+        cancel_on_tap_outside={false}
       />
     </PageLayout>
   );

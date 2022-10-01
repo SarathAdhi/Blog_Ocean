@@ -6,6 +6,7 @@ import { Toaster } from "react-hot-toast";
 import { userStore } from "@utils/store";
 import { useCallback, useEffect, useState } from "react";
 import LoadingPage from "@elements/loading/LoadingPage";
+import PageLayout from "@layouts/PageLayout";
 
 const clientId = process.env.GOOGLE_CLIENT_ID!;
 

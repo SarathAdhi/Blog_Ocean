@@ -13,11 +13,23 @@ const Content = new Schema({
     type: String,
     required: true,
   },
+  likes: {
+    type: [Schema.Types.ObjectId],
+    ref: "User",
+    default: [],
+  },
   comments: [
     {
       owner: { type: Schema.Types.ObjectId, ref: "User" },
-      comment: { type: String },
-      reactions: [String],
+      comment: { type: String, required: true },
+      reactions: {
+        type: [String],
+        default: [],
+      },
+      createdAt: {
+        type: Date,
+        default: Date.now,
+      },
     },
   ],
   createdAt: {

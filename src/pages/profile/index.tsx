@@ -25,13 +25,16 @@ const ProfilePage: NextPage = () => {
 
   const { user } = userStore();
 
-  const { email, image, bio, username } = user;
+  const { email, image, bio, username, followers, following } = user;
 
   return (
     <>
-      <PageLayout title="My Profile" className="flex flex-col gap-2">
-        <div className="flex items-start gap-4">
-          <div className="relative w-32 h-32">
+      <PageLayout
+        title="My Profile"
+        className="flex flex-col items-start gap-5"
+      >
+        <div className="relative group w-full flex items-center gap-4">
+          <div className="relative w-20 h-20 md:w-32 md:h-32">
             <Image
               src={image}
               layout="fill"
@@ -43,12 +46,21 @@ const ProfilePage: NextPage = () => {
 
           <div>
             <H2>{username}</H2>
-            <Label className="!text-lg text-gray-500">{bio}</Label>
+            <Label className="-mt-1 !text-lg !text-gray-500">{bio}</Label>
           </div>
+
+          <Button
+            padding={"2"}
+            bgColor={"gray.300"}
+            _hover={{ bgColor: "gray.200" }}
+            className="!rounded-full !absolute top-0 right-0"
+            onClick={() => setIsOpen(true)}
+          >
+            <PencilIcon className="w-6 h-6" />
+          </Button>
         </div>
 
         <Button
-          padding={"2"}
           color={"white"}
           bgColor={"red"}
           _hover={{ bgColor: "red.500" }}
@@ -57,15 +69,6 @@ const ProfilePage: NextPage = () => {
           rightIcon={<LogoutIcon className="h-5 w-5" />}
         >
           Logout
-        </Button>
-
-        <Button
-          padding={"2"}
-          bgColor={"gray.300"}
-          _hover={{ bgColor: "gray.200" }}
-          onClick={() => setIsOpen(true)}
-        >
-          <PencilIcon className="w-6 h-6" />
         </Button>
       </PageLayout>
 

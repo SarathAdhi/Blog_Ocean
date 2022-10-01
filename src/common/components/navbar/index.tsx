@@ -33,7 +33,7 @@ const Navbar: React.FC<Component> = ({ className }) => {
         className
       )}
     >
-      <LinkedItem href="/" className="relative w-10 h-10">
+      <LinkedItem href="/" className="relative w-10 h-10 md:w-14 md:h-14">
         <Image
           src="/assets/blog-ocean.png"
           layout="fill"

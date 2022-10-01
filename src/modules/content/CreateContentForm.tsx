@@ -60,10 +60,11 @@ export const CreateContentForm = () => {
           fontWeight="semibold"
           fontSize={"2xl"}
           paddingY={"6"}
-          maxLength={100}
+          maxLength={80}
           value={title}
           onChange={({ target }) => setTitle(target.value)}
-          variant="flushed"
+          variant="unstyled"
+          className="!h-6"
         />
 
         <MarkDownEditor

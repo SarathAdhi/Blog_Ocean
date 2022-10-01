@@ -1,10 +1,12 @@
 import { User } from "./User";
 
 export type Comment = {
+  _id?: string;
+  owner: User;
   comment: string;
   reactions: string[];
   createdAt: string;
-} & User;
+};
 
 export type Content = {
   _id?: string;
@@ -12,5 +14,6 @@ export type Content = {
   title: string;
   description: string;
   comments: Comment[];
+  likes: User[];
   createdAt: string;
 };

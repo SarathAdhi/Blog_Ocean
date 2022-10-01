@@ -18,7 +18,7 @@ const PageLayout: React.FC<Props & Component> = ({
   return (
     <>
       <Head>
-        <title>{title}</title>
+        <title>{title ? `${title} | Blog Ocean` : "Blog Ocean"}</title>
         <meta
           name="description"
           content="Convert your learning into blog post and help someone out there. Blog Ocean helps developers to resolve or learn something new."
@@ -40,7 +40,7 @@ const PageLayout: React.FC<Props & Component> = ({
         <div className="flex-1 w-full max-w-[1440px] grid lg:grid-cols-15">
           <div
             className={clsx(
-              "w-full p-2 md:p-5",
+              "w-full flex-1 p-2 md:p-5",
               RightSideBar ? "col-span-11 xl:col-span-12" : "col-span-15",
               className
             )}

@@ -15,10 +15,10 @@ export const ContentCard: React.FC<Content> = ({
   const dateString = date.split(" ").slice(1, 4).join(" ");
 
   return (
-    <article className="group bg-gray-200 w-full p-4 rounded-lg overflow-hidden duration-200 hover:shadow-lg">
+    <article className="group w-full overflow-hidden duration-300 ease-in-out hover:rounded-lg border-2 border-transparent border-b-gray-200 hover:border-gray-200">
       <LinkedItem
         href={`/content/${_id}/${title.toLowerCase().replaceAll(" ", "-")}`}
-        className="flex flex-col gap-3 max-h-52 "
+        className="flex flex-col gap-3 max-h-52 p-4"
         title={title}
       >
         <div className="flex items-center gap-2">
