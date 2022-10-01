@@ -33,7 +33,8 @@ export const getContentById = async (_id: User["_id"]) => {
 
 export const getContentsByUserId = async (owner: User["_id"]) => {
   await db();
-  return await ContentModel.findOne({ owner }).populate("owner");
+  // it should be find and not findOne
+  return await ContentModel.find({ owner }).populate("owner");
 };
 
 export const updateContent = async (_id: Content["_id"], update: any) => {
