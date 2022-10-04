@@ -39,7 +39,9 @@ export const UserSection: React.FC<Props & Component> = ({
 
         <div className="grid gap-1">
           <LinkedItem href={`/profile/${username}`} className="hover:underline">
-            <H3 className="font-bold lg:text-center">{username}</H3>
+            <H3 className="w-full font-bold text-center sm:text-left lg:text-center">
+              {username}
+            </H3>
           </LinkedItem>
 
           <Label className="-mt-1 flex-col text-center sm:text-left lg:text-center">

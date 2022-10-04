@@ -20,12 +20,14 @@ const Content = new Schema({
   },
   comments: [
     {
-      owner: { type: Schema.Types.ObjectId, ref: "User" },
+      owner: { type: Schema.Types.ObjectId, ref: "User", required: true },
       comment: { type: String, required: true },
-      reactions: {
-        type: [String],
-        default: [],
-      },
+      reactions: [
+        {
+          user: { type: Schema.Types.ObjectId, ref: "User" },
+          emoji: { type: String, required: true },
+        },
+      ],
       createdAt: {
         type: Date,
         default: Date.now,

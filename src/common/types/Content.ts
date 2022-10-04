@@ -1,10 +1,16 @@
 import { User } from "./User";
 
+export type Reaction = {
+  _id?: "string";
+  user: string;
+  emoji: string;
+};
+
 export type Comment = {
   _id?: string;
   owner: User;
   comment: string;
-  reactions: string[];
+  reactions: Reaction[];
   createdAt: string;
 };
 

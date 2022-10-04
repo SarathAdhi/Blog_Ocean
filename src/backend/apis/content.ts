@@ -2,7 +2,6 @@ import ContentModel from "@backend/models/content.model";
 import db from "@backend/server";
 import { Content } from "types/Content";
 import { User } from "types/User";
-import * as mongoose from "mongoose";
 
 export const createContent = async (body: User) => {
   await db();

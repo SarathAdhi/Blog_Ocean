@@ -56,8 +56,6 @@ const ViewContentPage: NextPage = () => {
 
   const { title, description, likes, comments } = content;
 
-  console.log(content);
-
   const isLiked = likes.some((like) => like._id === user._id);
 
   return (
