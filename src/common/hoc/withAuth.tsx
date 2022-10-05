@@ -6,8 +6,6 @@ const withAuth = (Component: React.FC) =>
   function pageProp({ ...pageProps }) {
     const { user } = userStore((state) => state);
 
-    // useEffect(() => {}, [user]);
-
     const isAuth = !!user._id;
 
     if (isAuth) return <Component {...pageProps} />;

@@ -1,4 +1,4 @@
-import { Button } from "@chakra-ui/react";
+import { Button, Heading, Text } from "@chakra-ui/react";
 import PageLayout from "@layouts/PageLayout";
 import React, { useState } from "react";
 import { LogoutIcon, PencilIcon } from "@heroicons/react/outline";
@@ -11,6 +11,7 @@ import { EditProfileModal } from "@modules/profile/EditProfileModal";
 import { H1, H2, H3, Label } from "@components/Text";
 import { userStore } from "@utils/store";
 import Image from "next/image";
+import { UserPosts } from "@modules/profile/UserPosts";
 
 const handleLogout = async (router: NextRouter) => {
   localStorage.removeItem("token");
@@ -25,7 +26,7 @@ const ProfilePage: NextPage = () => {
 
   const { user } = userStore();
 
-  const { email, image, bio, username, followers, following } = user;
+  const { image, bio, username } = user;
 
   return (
     <>
@@ -44,9 +45,15 @@ const ProfilePage: NextPage = () => {
             />
           </div>
 
-          <div>
+          <div className="w-9/12">
             <H2>{username}</H2>
-            <Label className="-mt-1 !text-lg !text-gray-500">{bio}</Label>
+            <Text
+              noOfLines={1}
+              fontWeight={"semibold"}
+              className="-mt-1 !text-lg !text-gray-400"
+            >
+              {bio}
+            </Text>
           </div>
 
           <Button
@@ -60,16 +67,26 @@ const ProfilePage: NextPage = () => {
           </Button>
         </div>
 
-        <Button
-          color={"white"}
-          bgColor={"red"}
-          _hover={{ bgColor: "red.500" }}
-          _active={{ bgColor: "" }}
-          onClick={() => handleLogout(router)}
-          rightIcon={<LogoutIcon className="h-5 w-5" />}
-        >
-          Logout
-        </Button>
+        <div className="w-full flex justify-end">
+          <Button
+            color={"white"}
+            bgColor={"red"}
+            _hover={{ bgColor: "red.500" }}
+            _active={{ bgColor: "" }}
+            onClick={() => handleLogout(router)}
+            rightIcon={<LogoutIcon className="h-5 w-5" />}
+          >
+            Logout
+          </Button>
+        </div>
+
+        <div className="w-full flex flex-col gap-3">
+          <Heading size={{ base: "lg", lg: "xl" }}>Contents</Heading>
+
+          <div className="w-full grid gap-4">
+            <UserPosts userId={user._id} />
+          </div>
+        </div>
       </PageLayout>
 
       <EditProfileModal isOpen={isOpen} setIsOpen={setIsOpen} />

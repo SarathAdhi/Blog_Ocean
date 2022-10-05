@@ -2,7 +2,7 @@ import { Button } from "@chakra-ui/react";
 import axios from "@lib/axios";
 import { userStore } from "@utils/store";
 import clsx from "clsx";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import toast from "react-hot-toast";
 import { Component } from "types/Page";
 import { User } from "types/User";

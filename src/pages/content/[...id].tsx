@@ -4,23 +4,13 @@ import axios, { AxiosResponse } from "@lib/axios";
 import { useRouter } from "next/router";
 import React, { useCallback, useEffect, useState } from "react";
 import { Content } from "types/Content";
-import { Divider, Heading, Stack } from "@chakra-ui/react";
+import { Heading } from "@chakra-ui/react";
 import { MarkdownText } from "@modules/content/MarkdownText";
 import { UserSection } from "@modules/content/UserSection";
 import { NextPage } from "next";
 import { ErrorPage } from "@elements/ErrorPage";
-import { ChatIcon, ThumbUpIcon } from "@heroicons/react/outline";
-import { userStore } from "@utils/store";
-import clsx from "clsx";
 import { CommentSection } from "@modules/content/CommentSection";
-
-const handleUserLike = async (
-  id: Content["_id"],
-  setContent: (content: Content) => void
-) => {
-  const data: Content = await axios.get(`/content/like/${id}`);
-  setContent(data);
-};
+import { ContentActionButtons } from "@modules/content/components/ContentActionButtons";
 
 const ViewContentPage: NextPage = () => {
   const router = useRouter();
@@ -28,8 +18,6 @@ const ViewContentPage: NextPage = () => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [isCommentSectionOpen, setIsCommentSectionOpen] =
     useState<boolean>(false);
-
-  const { user } = userStore();
 
   const { id } = router.query;
 
@@ -56,8 +44,6 @@ const ViewContentPage: NextPage = () => {
 
   const { title, description, likes, comments } = content;
 
-  const isLiked = likes.some((like) => like._id === user._id);
-
   return (
     <PageLayout
       title={title}
@@ -76,7 +62,7 @@ const ViewContentPage: NextPage = () => {
         fetchContent={() => fetchContent(id[0])}
       />
 
-      <div className="w-full flex flex-col gap-10">
+      <div className="w-full flex flex-col gap-10 pb-10">
         <Heading
           as="h2"
           size={{ base: "lg", sm: "xl", lg: "2xl" }}
@@ -88,27 +74,12 @@ const ViewContentPage: NextPage = () => {
         <MarkdownText description={description} />
       </div>
 
-      <div className="py-2 px-3 flex items-center justify-around gap-5 bg-white rounded-xl border-[1px] fixed bottom-16 md:bottom-2">
-        <button
-          className={clsx(
-            "flex items-center gap-1",
-            isLiked ? "text-gray-600" : "text-gray-300"
-          )}
-          onClick={() => handleUserLike(id[0], setContent)}
-        >
-          <ThumbUpIcon className="w-7 h-7" />
-
-          <span className="font-medium">{likes.length}</span>
-        </button>
-
-        <Stack direction="row" h="20px">
-          <Divider orientation="vertical" bgColor={"gray.500"} />
-        </Stack>
-
-        <button onClick={() => setIsCommentSectionOpen(true)}>
-          <ChatIcon className="w-7 h-7 text-gray-600" />
-        </button>
-      </div>
+      <ContentActionButtons
+        id={id[0]}
+        likes={likes}
+        setContent={setContent}
+        setIsCommentSectionOpen={setIsCommentSectionOpen}
+      />
 
       <CommentSection
         contentId={id[0]}
