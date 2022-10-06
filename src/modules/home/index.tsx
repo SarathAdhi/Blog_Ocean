@@ -9,6 +9,17 @@ type Props = {
 };
 
 export const HomeComponent: React.FC<Props> = ({ contents, isLoading }) => {
+  if (isLoading)
+    return (
+      <Spinner
+        className="mx-auto"
+        width={30}
+        height={30}
+        thickness="2px"
+        speed="0.65s"
+      />
+    );
+
   return (
     <div className="grid gap-4">
       {contents.map((content) => (
