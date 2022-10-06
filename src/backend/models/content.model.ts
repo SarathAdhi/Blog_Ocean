@@ -1,3 +1,5 @@
+// UserModel is not used anywhere, but import to Import
+// else Schema error is thrown
 const UserModel = require("../models/user.model");
 import { Schema, model, models } from "mongoose";
 
