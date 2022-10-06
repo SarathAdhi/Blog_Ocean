@@ -16,15 +16,15 @@ export default async function handler(
     try {
       const content = await getContentById(id as string);
       return res.status(200).json(content);
-    } catch ({ message }) {
-      const msg = message as string;
+    } catch (error: any) {
+      const msg = error?.message as string;
 
       if (msg.includes("Cast to ObjectId failed for value"))
         return res
           .status(404)
           .json({ error: "Content doesn't exist. Invalid url" });
 
-      return res.status(404).json({ error: message });
+      return res.status(404).json({ error });
     }
   }
 

@@ -25,6 +25,7 @@ const User = new Schema({
     type: [Schema.Types.ObjectId],
     ref: "User",
     default: [],
+    unique: true,
   },
 
   followers: {
@@ -35,6 +36,6 @@ const User = new Schema({
   },
 });
 
-const UserModel = models.User || model("User", User);
+const UserModel = models?.User || model("User", User);
 
 export default UserModel;

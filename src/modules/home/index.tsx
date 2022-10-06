@@ -11,13 +11,9 @@ type Props = {
 export const HomeComponent: React.FC<Props> = ({ contents, isLoading }) => {
   if (isLoading)
     return (
-      <Spinner
-        className="mx-auto"
-        width={30}
-        height={30}
-        thickness="2px"
-        speed="0.65s"
-      />
+      <div className="!w-full h-full max-h-40 flex items-center justify-center">
+        <Spinner width={30} height={30} thickness="2px" speed="0.65s" />
+      </div>
     );
 
   return (

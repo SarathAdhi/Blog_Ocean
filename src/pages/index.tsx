@@ -22,7 +22,7 @@ const Home: NextPage = () => {
   }, [fetchContents]);
 
   return (
-    <PageLayout title="Home" className="">
+    <PageLayout title="Home" className="w-full">
       <HomeComponent contents={contents} isLoading={isLoading} />
     </PageLayout>
   );
