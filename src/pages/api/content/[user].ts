@@ -1,16 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-import { getUserById, getUsers } from "@apis/user";
-import { User } from "types/User";
-import { validateToken } from "@backend/middleware/validate-token";
-import {
-  getContentById,
-  getContents,
-  getContentsByUserId,
-} from "@backend/apis/content";
-
-type Data = {
-  users: User[];
-};
+import { getContentsByUserId } from "@backend/apis/content";
 
 export default async function handler(
   req: NextApiRequest,

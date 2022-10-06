@@ -1,4 +1,4 @@
-import { JWT_Decode } from "@backend/apis/user";
+import { getUserByEmail, JWT_Decode } from "@backend/apis/user";
 import jwt_decode from "jwt-decode";
 
 export const validateToken = async (token: string) => {
@@ -7,11 +7,7 @@ export const validateToken = async (token: string) => {
   try {
     decoded = await jwt_decode(token!);
 
-    const user = {
-      email: decoded.email,
-      name: decoded.name,
-      image: decoded.picture,
-    };
+    const user = await getUserByEmail(decoded.email as string);
 
     return { user, isAuth: true };
   } catch (err) {

@@ -1,5 +1,4 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-import { getUserByEmail } from "@apis/user";
 import { User } from "types/User";
 import { validateToken } from "@backend/middleware/validate-token";
 import { getContentById, updateContent } from "@backend/apis/content";
@@ -15,9 +14,7 @@ export default async function handler(
   const { id } = req.query;
   const { comment } = req.body;
 
-  const userDetails = user as User;
-
-  const userInfo = await getUserByEmail(userDetails.email as string);
+  const userInfo = user as User;
 
   if (userInfo?._id) {
     const commentObject = {
