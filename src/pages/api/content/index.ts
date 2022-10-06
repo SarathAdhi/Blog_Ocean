@@ -23,10 +23,6 @@ export default async function handler(
     }
   }
 
-  try {
-    const contents = await getContents();
-    return res.status(200).json(contents);
-  } catch (error: any) {
-    return res.status(404).json({ error });
-  }
+  const contents = await getContents();
+  return res.status(200).json(contents);
 }

@@ -1,9 +1,11 @@
+const UserModel = require("../models/user.model");
 import { Schema, model, models } from "mongoose";
 
 const Content = new Schema({
   owner: {
     type: Schema.Types.ObjectId,
     ref: "User",
+    required: true,
   },
   title: {
     type: String,
