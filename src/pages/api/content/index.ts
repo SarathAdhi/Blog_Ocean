@@ -5,11 +5,6 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  // const { isAuth } = await validateToken(req.headers.authorization!);
-  // console.log(isAuth);
-
-  // if (!isAuth) return res.status(401).json({ error: "Invalid token." });
-
   const { id } = req.query;
 
   if (id) {
@@ -28,6 +23,10 @@ export default async function handler(
     }
   }
 
-  const contents = await getContents();
-  return res.status(200).json(contents);
+  try {
+    const contents = await getContents();
+    return res.status(200).json(contents);
+  } catch (error: any) {
+    return res.status(404).json({ error });
+  }
 }

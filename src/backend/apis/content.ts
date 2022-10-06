@@ -15,7 +15,7 @@ export const contentFilter = async (filter: any) => {
 
 export const getContents = async () => {
   await db();
-  return await ContentModel.find({}).populate("owner");
+  return await ContentModel.find({}).populate("owner").exec();
 };
 
 export const getContentById = async (_id: User["_id"]) => {
