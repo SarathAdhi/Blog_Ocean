@@ -8,7 +8,7 @@ import { googleLogout } from "@react-oauth/google";
 import { NextRouter, useRouter } from "next/router";
 import { NextPage } from "next";
 import { EditProfileModal } from "@modules/profile/EditProfileModal";
-import { H1, H2, H3, Label } from "@components/Text";
+import { H2 } from "@components/Text";
 import { userStore } from "@utils/store";
 import Image from "next/image";
 import { UserPosts } from "@modules/profile/UserPosts";
@@ -34,7 +34,7 @@ const ProfilePage: NextPage = () => {
         title="My Profile"
         className="flex flex-col items-start gap-5"
       >
-        <div className="relative group w-full flex items-center gap-4">
+        <div className="z-40 sticky top-0 py-4 bg-slate-100 group w-full flex items-center gap-4 rounded-lg">
           <div className="relative w-20 h-20 md:w-32 md:h-32">
             <Image
               src={image}
@@ -47,6 +47,7 @@ const ProfilePage: NextPage = () => {
 
           <div className="w-9/12">
             <H2>{username}</H2>
+
             <Text
               noOfLines={1}
               fontWeight={"semibold"}

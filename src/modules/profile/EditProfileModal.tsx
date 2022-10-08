@@ -24,6 +24,14 @@ const handleSubmit = async (
   const username = (values[0] as HTMLInputElement).value;
   const bio = (values[1] as HTMLInputElement).value;
 
+  const isSpaceFound = username.includes(" ");
+
+  if (isSpaceFound) {
+    toast.error("Username should not contain spaces");
+
+    return;
+  }
+
   const data: AxiosResponse = await axios.put("/user", {
     username,
     bio,

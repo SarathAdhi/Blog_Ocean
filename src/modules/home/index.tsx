@@ -1,4 +1,4 @@
-import { Spinner } from "@chakra-ui/react";
+import { LoadingSkeleton } from "@elements/LoadingSkeleton";
 import React from "react";
 import { Content } from "types/Content";
 import { ContentCard } from "./components/ContentCard";
@@ -9,18 +9,11 @@ type Props = {
 };
 
 export const HomeComponent: React.FC<Props> = ({ contents, isLoading }) => {
-  if (isLoading)
-    return (
-      <div className="!w-full h-full max-h-40 flex items-center justify-center">
-        <Spinner width={30} height={30} thickness="2px" speed="0.65s" />
-      </div>
-    );
-
   return (
-    <div className="grid gap-4">
+    <LoadingSkeleton isLoaded={!isLoading} className="w-full grid gap-1">
       {contents.map((content) => (
         <ContentCard key={content._id} {...content} />
       ))}
-    </div>
+    </LoadingSkeleton>
   );
 };

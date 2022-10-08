@@ -1,5 +1,6 @@
 import { Button } from "@chakra-ui/react";
 import Input from "@components/Input";
+import { Label } from "@components/Text";
 import MarkDownEditor from "@elements/MarkDownEditor";
 import axios, { AxiosResponse } from "@lib/axios";
 import React, { useState } from "react";
@@ -55,17 +56,22 @@ export const CreateContentForm = () => {
   return (
     <div className="h-full flex flex-col items-end gap-4">
       <div className="w-full h-full flex flex-col gap-4">
-        <Input
-          placeholder="Enter your title"
-          fontWeight="semibold"
-          fontSize={"2xl"}
-          paddingY={"6"}
-          maxLength={80}
-          value={title}
-          onChange={({ target }) => setTitle(target.value)}
-          variant="unstyled"
-          className="!h-6"
-        />
+        <div className="w-full mt-5 md:mt-0">
+          <Input
+            placeholder="Enter your title"
+            fontWeight="semibold"
+            fontSize={"2xl"}
+            paddingY={"6"}
+            maxLength={100}
+            value={title}
+            _focus={{ bgColor: "transparent" }}
+            onChange={({ target }) => setTitle(target.value)}
+            variant="unstyled"
+            className="!h-6"
+          />
+
+          <Label className="text-right">{title.length} / 100</Label>
+        </div>
 
         <MarkDownEditor
           value={description}

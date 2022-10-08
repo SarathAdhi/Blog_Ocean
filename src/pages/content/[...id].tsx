@@ -53,6 +53,8 @@ const ViewContentPage: NextPage = () => {
           className="col-span-4 xl:col-span-3 hidden lg:flex py-5 px-3 sticky top-0 w-full h-screen border-l-[1.5px] border-gray-400/30"
           {...content}
           fetchContent={() => fetchContent(id[0])}
+          currentContent={content._id}
+          showUserContent
         />
       }
     >
@@ -66,7 +68,7 @@ const ViewContentPage: NextPage = () => {
         <Heading
           as="h2"
           size={{ base: "lg", sm: "xl", lg: "2xl" }}
-          textDecoration={"underline"}
+          // textDecoration={"underline"}
         >
           {title}
         </Heading>

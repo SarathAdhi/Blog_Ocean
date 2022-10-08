@@ -32,6 +32,7 @@ export const CommentBox: React.FC<Props> = ({
   setContent,
 }) => {
   const date = `${new Date(createdAt)}`.split(" ").slice(0, 4).join(" ");
+  const time = `${new Date(createdAt)}`.split(" ").slice(4, 5).join(" ");
 
   const {
     user: { _id },
@@ -96,9 +97,9 @@ export const CommentBox: React.FC<Props> = ({
               }}
             >
               {isUserReacted ? (
-                <span className="text-lg">{isUserReacted.emoji}</span>
+                <span className="text-xl">{isUserReacted.emoji}</span>
               ) : (
-                <EmojiHappyIcon className="bg-gray-600 rounded-full w-5 h-5 text-[#f8d450]" />
+                <EmojiHappyIcon className="rounded-full w-6 h-6 text-gray-500" />
               )}
             </button>
 
@@ -109,7 +110,10 @@ export const CommentBox: React.FC<Props> = ({
             )}
           </div>
 
-          <Label className="text-end">{date}</Label>
+          <Label className="text-end flex items-center gap-x-2 flex-wrap justify-end">
+            <span>{date}</span>
+            <span>{time}</span>
+          </Label>
         </div>
       </div>
 

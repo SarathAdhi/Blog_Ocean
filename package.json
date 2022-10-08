@@ -1,7 +1,23 @@
 {
-  "name": "comments_msger",
+  "name": "blog_ocean",
   "version": "0.1.0",
   "private": true,
+  "repository": "https://github.com/SarathAdhi/Blog_Ocean",
+  "license": "MIT",
+  "keywords": [
+    "blog",
+    "educational",
+    "blog website",
+    "nextjs",
+    "reactjs",
+    "nodejs",
+    "mongodb",
+    "mongoose",
+    "typescript",
+    "tailwindcss",
+    "OAuth2",
+    "chakra-ui"
+  ],
   "scripts": {
     "dev": "next dev",
     "build": "next build",

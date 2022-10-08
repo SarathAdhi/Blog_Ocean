@@ -1,4 +1,3 @@
-import { H1 } from "@components/Text";
 import withAuth from "@hoc/withAuth";
 import PageLayout from "@layouts/PageLayout";
 import { CreateContentForm } from "@modules/content/CreateContentForm";
@@ -24,7 +23,7 @@ const CreatePage: NextPage = () => {
 
   return (
     <PageLayout title="Create" className="flex flex-col gap-10">
-      <H1 className="italic">Briefly tell us what you have learnt today...</H1>
+      {/* <H1 className="italic">Briefly tell us what you have learnt today...</H1> */}
 
       <CreateContentForm />
     </PageLayout>

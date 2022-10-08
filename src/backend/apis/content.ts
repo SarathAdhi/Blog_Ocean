@@ -15,7 +15,10 @@ export const contentFilter = async (filter: any) => {
 
 export const getContents = async () => {
   await db();
-  return await ContentModel.find({}).populate("owner").exec();
+  return await ContentModel.find({})
+    .populate("owner")
+    .sort({ createdAt: -1 })
+    .exec();
 };
 
 export const getContentById = async (_id: User["_id"]) => {
@@ -33,7 +36,9 @@ export const getContentById = async (_id: User["_id"]) => {
 export const getContentsByUserId = async (owner: User["_id"]) => {
   await db();
   // it should be find and not findOne
-  return await ContentModel.find({ owner }).populate("owner");
+  return await ContentModel.find({ owner })
+    .populate("owner")
+    .sort({ createdAt: -1 });
 };
 
 export const updateContent = async (_id: Content["_id"], update: any) => {

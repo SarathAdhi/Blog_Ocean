@@ -1,8 +1,7 @@
 import { H2, Label } from "@components/Text";
 import { UserFollowButton } from "@elements/UserFollowButton";
-import { userStore } from "@utils/store";
 import Image from "next/image";
-import React, { useState } from "react";
+import React from "react";
 import { User } from "types/User";
 import { ViewFollowersModal } from "./ViewFollowersModal";
 
@@ -18,9 +17,6 @@ export const ViewUserProfile: React.FC<Props> = ({
   bio,
   setUserProfile,
 }) => {
-  const { user } = userStore();
-  const [isOpen, setIsOpen] = useState<boolean>(false);
-
   return (
     <>
       <div className="flex items-center flex-col sm:flex-row gap-5 justify-between bg-white p-5 rounded-lg">
@@ -41,12 +37,11 @@ export const ViewUserProfile: React.FC<Props> = ({
               {bio}
             </Label>
 
-            <Label
-              onClick={() => setIsOpen(true)}
-              className="text-center sm:text-left !text-base text-gray-400 cursor-pointer hover:underline"
-            >
-              {followers?.length} Followers
-            </Label>
+            <ViewFollowersModal
+              labelClassName="text-center sm:text-left !text-base text-gray-400 cursor-pointer hover:underline"
+              followers={followers}
+              onClick={(user) => setUserProfile(user)}
+            />
           </div>
         </div>
 
@@ -56,14 +51,6 @@ export const ViewUserProfile: React.FC<Props> = ({
           onClick={(user) => setUserProfile(user)}
         />
       </div>
-
-      <ViewFollowersModal
-        isOpen={isOpen}
-        setIsOpen={setIsOpen}
-        followers={followers}
-        myUserId={user._id}
-        onClick={(user) => setUserProfile(user)}
-      />
     </>
   );
 };

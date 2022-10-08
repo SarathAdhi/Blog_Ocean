@@ -1,6 +1,5 @@
-import { Spinner } from "@chakra-ui/react";
 import { H1, P } from "@components/Text";
-import { ErrorPage } from "@elements/ErrorPage";
+import { LoadingSkeleton } from "@elements/LoadingSkeleton";
 import axios from "@lib/axios";
 import { ContentCard } from "@modules/home/components/ContentCard";
 import React, { useCallback, useEffect, useState } from "react";
@@ -19,7 +18,7 @@ const OopsMessage = () => (
 );
 
 export const UserPosts: React.FC<Props> = ({ userId }) => {
-  const [content, setContent] = useState<Content[] | null>(null);
+  const [content, setContent] = useState<Content[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
   const fetchContent = useCallback(async () => {
@@ -32,26 +31,13 @@ export const UserPosts: React.FC<Props> = ({ userId }) => {
     fetchContent();
   }, [fetchContent]);
 
-  if (isLoading)
-    return (
-      <Spinner
-        className="mx-auto"
-        width={30}
-        height={30}
-        thickness="2px"
-        speed="0.65s"
-      />
-    );
-
-  if (!content) return <ErrorPage title="Something went wrong" error="404" />;
-
   return (
-    <>
-      {content.length !== 0 ? (
-        content.map((content) => <ContentCard key={content._id} {...content} />)
-      ) : (
-        <OopsMessage />
-      )}
-    </>
+    <LoadingSkeleton isLoaded={!isLoading} className="grid">
+      {content.length !== 0
+        ? content.map((content) => (
+            <ContentCard key={content._id} {...content} />
+          ))
+        : !isLoading && <OopsMessage />}
+    </LoadingSkeleton>
   );
 };
