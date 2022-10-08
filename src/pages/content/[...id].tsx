@@ -21,17 +21,14 @@ const ViewContentPage: NextPage = () => {
 
   const { id } = router.query;
 
-  const fetchContent = useCallback(
-    async (contentId: Content["_id"]) => {
-      const data: Content & AxiosResponse = await axios.get(
-        `/content?id=${contentId}`
-      );
+  const fetchContent = useCallback(async (contentId: Content["_id"]) => {
+    const data: Content & AxiosResponse = await axios.get(
+      `/content?id=${contentId}`
+    );
 
-      setContent(data);
-      setIsLoading(false);
-    },
-    [id]
-  );
+    setContent(data);
+    setIsLoading(false);
+  }, []);
 
   useEffect(() => {
     if (id) fetchContent(id[0]);

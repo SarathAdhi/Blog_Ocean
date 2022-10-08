@@ -52,7 +52,7 @@ export const EditProfileModal: React.FC<Props> = ({ isOpen, setIsOpen }) => {
 
   useEffect(() => {
     setIsOpen(isProfileCompleted);
-  }, []);
+  }, [isProfileCompleted]);
 
   return (
     <Modal title="Edit Profile" isOpen={isOpen} setIsOpen={setIsOpen}>

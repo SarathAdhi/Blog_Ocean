@@ -77,7 +77,12 @@ export const CommentBox: React.FC<Props> = ({
         className="flex items-start gap-2"
       >
         <div className="relative w-10 h-10">
-          <Image src={image} layout="fill" className="rounded-full" />
+          <Image
+            src={image}
+            layout="fill"
+            className="rounded-full"
+            alt={username}
+          />
         </div>
 
         <div className="w-9/12">
