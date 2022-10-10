@@ -1,5 +1,6 @@
 import TextArea from "@components/TextArea";
 import { SlideOver } from "@elements/SlideOver";
+import { PaperAirplaneIcon } from "@heroicons/react/outline";
 import axios from "@lib/axios";
 import React, { useState } from "react";
 import { Content } from "types/Content";
@@ -48,18 +49,30 @@ export const CommentSection: React.FC<Props> = ({
           ))}
         </div>
 
-        <TextArea
-          rows={4}
-          value={comment}
-          placeholder="Add a comment. Click ctrl + Enter to submit."
-          onChange={({ target }) => setComment(target.value)}
-          onKeyUp={(e) => {
-            if (e.ctrlKey && e.key === "Enter")
-              handleSubmit(contentId, comment, setContent).finally(() =>
+        <div className="flex items-center gap-2">
+          <TextArea
+            rows={4}
+            value={comment}
+            placeholder="Add a comment. Click ctrl + Enter to submit."
+            onChange={({ target }) => setComment(target.value)}
+            onKeyUp={(e) => {
+              if (e.ctrlKey && e.key === "Enter")
+                handleSubmit(contentId, comment, setContent).then(() =>
+                  setComment("")
+                );
+            }}
+          />
+
+          <button
+            onClick={() =>
+              handleSubmit(contentId, comment, setContent).then(() =>
                 setComment("")
-              );
-          }}
-        />
+              )
+            }
+          >
+            <PaperAirplaneIcon className="w-6 h-6 rotate-90" />
+          </button>
+        </div>
       </div>
     </SlideOver>
   );

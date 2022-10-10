@@ -9,22 +9,16 @@ import {
 import { User } from "types/User";
 import { validateToken } from "@backend/middleware/validate-token";
 
-type Data = {
-  users: User[];
-};
-
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
   const { isAuth, user } = await validateToken(req.headers.authorization!);
   const userDetails = user as User;
-  // console.log(isAuth);
 
-  // if (!isAuth) return res.status(401).json({ error: "Invalid token." });
+  // if (!isAuth) return res.status(401).json({ error: "Please Login to continue" });
 
   const method = req.method;
-  console.log(method);
 
   switch (method) {
     case "GET":

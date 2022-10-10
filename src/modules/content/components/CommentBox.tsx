@@ -45,6 +45,8 @@ export const CommentBox: React.FC<Props> = ({
   const isUserReacted = reactions.find((react) => react.user === _id);
 
   const onEmojiClick = async (event: any, emojiObject: any) => {
+    setShowEmojiPicker(false);
+
     const data: Content = await axios.post(
       `/content/comment/reactions/${commentId}`,
       {
@@ -54,10 +56,11 @@ export const CommentBox: React.FC<Props> = ({
     );
 
     setContent(data);
-    setShowEmojiPicker(false);
   };
 
   const removeEmoji = async () => {
+    setShowEmojiPicker(false);
+
     const data: Content = await axios.post(
       `/content/comment/reactions/${commentId}`,
       {
@@ -67,15 +70,11 @@ export const CommentBox: React.FC<Props> = ({
     );
 
     setContent(data);
-    setShowEmojiPicker(false);
   };
 
   return (
     <div className="w-full flex flex-col gap-2 pt-4 first:!pt-0">
-      <LinkedItem
-        href={`/profile/${username}`}
-        className="flex items-start gap-2"
-      >
+      <div className="flex items-center gap-2">
         <div className="relative w-10 h-10">
           <Image
             src={image}
@@ -85,11 +84,14 @@ export const CommentBox: React.FC<Props> = ({
           />
         </div>
 
-        <div className="w-9/12">
-          <P className="!truncate">{username}</P>
+        <div className="w-9/12 flex flex-col items-start">
+          <LinkedItem href={`/profile/${username}`} className="!truncate">
+            {username}
+          </LinkedItem>
+
           <Label className="!truncate">{bio}</Label>
         </div>
-      </LinkedItem>
+      </div>
 
       <div className="grid gap-2">
         <P className="!text-base whitespace-pre-wrap">{comment}</P>
@@ -104,7 +106,7 @@ export const CommentBox: React.FC<Props> = ({
               {isUserReacted ? (
                 <span className="text-xl">{isUserReacted.emoji}</span>
               ) : (
-                <EmojiHappyIcon className="rounded-full w-6 h-6 text-gray-500" />
+                <EmojiHappyIcon className="rounded-full w-5 h-5 text-gray-400" />
               )}
             </button>
 

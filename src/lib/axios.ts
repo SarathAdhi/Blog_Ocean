@@ -17,6 +17,10 @@ const axios = Axios.create({
 axios.interceptors.response.use(
   (response) => response.data,
   ({ response }) => {
+    // TODO: Custom login login
+    // if (response.status === 401) {
+    // }
+
     toast.error(response.data.error);
     return Promise.reject(response.data);
   }

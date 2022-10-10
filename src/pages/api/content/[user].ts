@@ -6,9 +6,8 @@ export default async function handler(
   res: NextApiResponse
 ) {
   // const { isAuth } = await validateToken(req.headers.authorization!);
-  // console.log(isAuth);
 
-  // if (!isAuth) return res.status(401).json({ error: "Invalid token." });
+  // if (!isAuth) return res.status(401).json({ error: "Please Login to continue" });
 
   const { user } = req.query;
 

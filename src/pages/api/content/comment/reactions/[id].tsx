@@ -11,7 +11,8 @@ export default async function handler(
 ) {
   const { isAuth, user } = await validateToken(req.headers.authorization!);
 
-  if (!isAuth) return res.status(401).json({ error: "Invalid token." });
+  if (!isAuth)
+    return res.status(401).json({ error: "Please Login to continue" });
 
   const { id } = req.query;
   const { emoji, contentId } = req.body;
