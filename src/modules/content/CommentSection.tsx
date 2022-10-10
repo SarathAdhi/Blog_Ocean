@@ -49,7 +49,7 @@ export const CommentSection: React.FC<Props> = ({
           ))}
         </div>
 
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2 pt-2">
           <TextArea
             rows={4}
             value={comment}
