@@ -71,7 +71,7 @@ export const UserSection: React.FC<Props & Component> = ({
           </Label>
 
           <ViewFollowersModal
-            labelClassName="text-center text-gray-400 cursor-pointer hover:underline"
+            labelClassName="md:text-center text-left text-gray-400 cursor-pointer hover:underline"
             followers={followers}
             onClick={fetchContent}
           />

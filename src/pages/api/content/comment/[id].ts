@@ -1,7 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import { User } from "types/User";
 import { validateToken } from "@backend/middleware/validate-token";
-import { getContentById, updateContent } from "@backend/apis/content";
+import { getCommentById, updateComments } from "@backend/apis/content";
 
 export default async function handler(
   req: NextApiRequest,
@@ -15,20 +15,31 @@ export default async function handler(
   const { id } = req.query;
   const { comment } = req.body;
 
+  const method = req.method;
+
   const userInfo = user as User;
 
   if (userInfo?._id) {
-    const commentObject = {
-      owner: userInfo._id,
-      comment,
-    };
-    const addComment = { $push: { comments: commentObject } };
+    if (method === "POST") {
+      const commentObject = {
+        owner: userInfo._id,
+        comment,
+      };
 
-    await updateContent(id as string, addComment);
+      const addComment = { $push: { comments: commentObject } };
 
-    const content = await getContentById(id as string);
+      await updateComments({ _id: id }, addComment);
 
-    return res.status(200).json(content);
+      const comments = await getCommentById(id as string);
+
+      return res.status(200).json(comments);
+    }
+    //
+    else if (method === "GET") {
+      const comment = await getCommentById(id as string);
+
+      return res.status(200).json(comment);
+    }
   }
 
   return res.status(404).json({ error: "No user found" });

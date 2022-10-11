@@ -7,7 +7,7 @@ export type Reaction = {
 };
 
 export type Comment = {
-  _id?: string;
+  _id: string;
   owner: User;
   comment: string;
   reactions: Reaction[];
@@ -19,7 +19,7 @@ export type Content = {
   owner: User;
   title: string;
   description: string;
-  comments: Comment[];
+  comment: { _id: string; comments?: Comment[] };
   likes: User[];
   createdAt: string;
 };

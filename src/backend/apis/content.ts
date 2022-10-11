@@ -1,11 +1,17 @@
+import CommentModel from "@backend/models/comment.model";
 import ContentModel from "@backend/models/content.model";
 import db from "@backend/server";
-import { Content } from "types/Content";
+import { Comment, Content } from "types/Content";
 import { User } from "types/User";
 
 export const createContent = async (body: User) => {
   await db();
   return ContentModel.create(body);
+};
+
+export const createComment = async (title: Content["title"]) => {
+  await db();
+  return CommentModel.create({ title });
 };
 
 export const contentFilter = async (filter: any) => {
@@ -28,7 +34,8 @@ export const getContentById = async (_id: User["_id"]) => {
 
   content = await content.populate("owner.followers");
   content = await content.populate("likes");
-  content = await content.populate("comments.owner");
+  // content = await content.populate("comments");
+  // content = await content.populate("comments.owner");
 
   return content;
 };
@@ -49,4 +56,25 @@ export const updateContent = async (_id: Content["_id"], update: any) => {
     .populate("owner")
     .populate("likes");
   return await content;
+};
+
+export const getCommentById = async (_id: Comment["_id"]) => {
+  await db();
+
+  return await CommentModel.findOne({ _id })
+    .sort({
+      "comments.createdAt": -1,
+    })
+    .populate("comments.owner");
+};
+
+export const updateComments = async (filter: any, update: any) => {
+  await db();
+
+  return await CommentModel.updateOne(filter, update);
+};
+
+export const commentFilter = async (filter: any) => {
+  await db();
+  return await CommentModel.find(filter);
 };

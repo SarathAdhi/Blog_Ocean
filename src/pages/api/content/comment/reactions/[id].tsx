@@ -1,8 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import { User } from "types/User";
 import { validateToken } from "@backend/middleware/validate-token";
-import { contentFilter, getContentById } from "@backend/apis/content";
-import ContentModel from "@backend/models/content.model";
+import { commentFilter, updateComments } from "@backend/apis/content";
 import { Content } from "types/Content";
 
 export default async function handler(
@@ -15,24 +14,24 @@ export default async function handler(
     return res.status(401).json({ error: "Please Login to continue" });
 
   const { id } = req.query;
-  const { emoji, contentId } = req.body;
+  const { emoji, commentCollectionId } = req.body;
 
   const userInfo = user as User;
 
   if (userInfo?._id) {
     const filter = {
-      _id: contentId,
-      "comments._id": id,
+      _id: id,
+      "comments._id": commentCollectionId,
     };
 
-    const _contentDetails = await contentFilter(filter);
+    const _contentDetails = await commentFilter(filter);
 
-    const contentDetails = _contentDetails[0] as Content;
+    const contentDetails = _contentDetails[0] as Content["comment"];
 
     const comments = contentDetails?.comments;
 
     const getComment = comments?.find(
-      (comment) => String(comment._id) === String(id)
+      (comment) => String(comment._id) === String(commentCollectionId)
     );
 
     const isUserReacted = getComment?.reactions.find(
@@ -52,7 +51,7 @@ export default async function handler(
         $push: { "comments.$.reactions": reaction },
       };
 
-      await ContentModel.updateOne(filter, updateLikes);
+      await updateComments(filter, updateLikes);
     }
     // For new emoji reaction
     else if (reactedEmoji !== emoji && isUserReacted) {
@@ -60,7 +59,7 @@ export default async function handler(
         $set: { "comments.$.reactions": reaction },
       };
 
-      await ContentModel.updateOne(filter, updateLikes);
+      await updateComments(filter, updateLikes);
     }
     // For undo comment reaction
     else {
@@ -68,12 +67,10 @@ export default async function handler(
         $pull: { "comments.$.reactions": reaction },
       };
 
-      await ContentModel.updateOne(filter, updateLikes);
+      await updateComments(filter, updateLikes);
     }
 
-    const content = await getContentById(contentId as string);
-
-    return res.status(200).json(content);
+    return res.status(200).json({ error: "" });
   }
 
   return res.status(404).json({ error: "No user found" });

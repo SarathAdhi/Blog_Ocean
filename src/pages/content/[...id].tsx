@@ -39,7 +39,7 @@ const ViewContentPage: NextPage = () => {
   if (!content)
     return <ErrorPage title="Requested Content not found" error="404" />;
 
-  const { title, description, likes, comments } = content;
+  const { title, description, likes, comment } = content;
 
   return (
     <PageLayout
@@ -62,11 +62,7 @@ const ViewContentPage: NextPage = () => {
       />
 
       <div className="w-full flex flex-col gap-10 pb-10">
-        <Heading
-          as="h2"
-          size={{ base: "lg", sm: "xl", lg: "2xl" }}
-          // textDecoration={"underline"}
-        >
+        <Heading as="h2" size={{ base: "lg", sm: "xl", lg: "2xl" }}>
           {title}
         </Heading>
 
@@ -82,8 +78,7 @@ const ViewContentPage: NextPage = () => {
 
       <CommentSection
         contentId={id[0]}
-        comments={comments}
-        setContent={setContent}
+        commentId={comment}
         isOpen={isCommentSectionOpen}
         setIsOpen={setIsCommentSectionOpen}
       />

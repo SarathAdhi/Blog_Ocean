@@ -23,7 +23,7 @@ export const decodeToken = async (token: string) => {
 
 export const createUser = async (body: NewUser) => {
   await db();
-  return await UserModel.create(body);
+  return await UserModel.create({ ...body, following: [], followers: [] });
 };
 
 export const getUsers = async () => {

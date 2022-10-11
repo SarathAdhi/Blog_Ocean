@@ -1,6 +1,7 @@
 // UserModel is not used anywhere, but import to Import
 // else Schema error is thrown
 const UserModel = require("../models/user.model");
+const CommentModel = require("../models/comment.model");
 import { Schema, model, models } from "mongoose";
 
 const Content = new Schema({
@@ -22,22 +23,11 @@ const Content = new Schema({
     ref: "User",
     default: [],
   },
-  comments: [
-    {
-      owner: { type: Schema.Types.ObjectId, ref: "User", required: true },
-      comment: { type: String, required: true },
-      reactions: [
-        {
-          user: { type: Schema.Types.ObjectId, ref: "User" },
-          emoji: { type: String, required: true },
-        },
-      ],
-      createdAt: {
-        type: Date,
-        default: Date.now,
-      },
-    },
-  ],
+  comment: {
+    type: Schema.Types.ObjectId,
+    ref: "Comment",
+    required: true,
+  },
   createdAt: {
     type: Date,
     default: Date.now,

@@ -1,6 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import { validateToken } from "@backend/middleware/validate-token";
-import { createContent } from "@backend/apis/content";
+import { createComment, createContent } from "@backend/apis/content";
 import { User } from "types/User";
 
 export default async function handler(
@@ -14,12 +14,16 @@ export default async function handler(
 
   const userDetails = user as User;
 
-  const content = {
-    ...req.body,
-    owner: userDetails._id,
-  };
-
   try {
+    const { title } = req.body;
+    const comment = await createComment(title);
+
+    const content = {
+      ...req.body,
+      owner: userDetails._id,
+      comment: comment._id,
+    };
+
     const data = await createContent(content);
 
     return res

@@ -2,48 +2,56 @@ import TextArea from "@components/TextArea";
 import { SlideOver } from "@elements/SlideOver";
 import { PaperAirplaneIcon } from "@heroicons/react/outline";
 import axios from "@lib/axios";
-import React, { useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { Content } from "types/Content";
 import { CommentBox } from "./components/CommentBox";
 
 type Props = {
   isOpen: boolean;
   setIsOpen: (value: boolean) => void;
-  setContent: (content: Content) => void;
   contentId: Content["_id"];
-  comments: Content["comments"];
+  commentId: Content["comment"];
 };
 
-const handleSubmit = async (
-  contentId: Content["_id"],
-  comment: string,
-  setContent: (content: Content) => void
-) => {
-  const data: Content = await axios.post(`/content/comment/${contentId}`, {
+const handleSubmit = async (commentId: Content["comment"], comment: string) => {
+  await axios.post(`/content/comment/${commentId}`, {
     comment,
   });
-  setContent(data);
 };
 
 export const CommentSection: React.FC<Props> = ({
-  setContent,
   isOpen,
   setIsOpen,
-  contentId,
-  comments,
+  commentId,
 }) => {
   const [comment, setComment] = useState("");
+  const [comments, setComments] = useState<Content["comment"] | null>(null);
+
+  const fetchComments = useCallback(async () => {
+    const data: Content["comment"] = await axios.get(
+      `/content/comment/${commentId}`
+    );
+
+    setComments(data);
+  }, [commentId]);
+
+  useEffect(() => {
+    fetchComments();
+  }, [fetchComments]);
+
+  if (!comments) return null;
+
+  const { comments: _comments } = comments;
 
   return (
     <SlideOver title="Comments" isOpen={isOpen} setIsOpen={setIsOpen}>
       <div className="relative w-full h-full flex flex-col justify-between">
         <div className="w-full px-3 flex flex-col gap-2 pb-5 overflow-auto divide-y-2">
-          {comments.map((comment) => (
+          {_comments?.map((comment) => (
             <CommentBox
               key={comment._id}
-              contentId={contentId}
-              commentId={comment._id}
-              setContent={setContent}
+              commentId={comments._id}
+              fetchComments={fetchComments}
               {...comment}
             />
           ))}
@@ -57,17 +65,19 @@ export const CommentSection: React.FC<Props> = ({
             onChange={({ target }) => setComment(target.value)}
             onKeyUp={(e) => {
               if (e.ctrlKey && e.key === "Enter")
-                handleSubmit(contentId, comment, setContent).then(() =>
-                  setComment("")
-                );
+                handleSubmit(commentId, comment).then(() => {
+                  fetchComments();
+                  setComment("");
+                });
             }}
           />
 
           <button
             onClick={() =>
-              handleSubmit(contentId, comment, setContent).then(() =>
-                setComment("")
-              )
+              handleSubmit(commentId, comment).then(() => {
+                fetchComments();
+                setComment("");
+              })
             }
           >
             <PaperAirplaneIcon className="w-6 h-6 rotate-90" />
