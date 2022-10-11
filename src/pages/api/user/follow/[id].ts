@@ -20,6 +20,8 @@ export default async function handler(
     const filter = { followers: userInfo._id };
     const isUserFollowing = await userFilter(filter);
 
+    console.log(isUserFollowing);
+
     // For following the user
     if (isUserFollowing.length === 0) {
       const updateFollowers = { $push: { followers: userInfo._id } };
