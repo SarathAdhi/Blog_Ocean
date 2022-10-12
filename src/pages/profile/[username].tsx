@@ -32,7 +32,7 @@ const ViewProfilePage: NextPage = () => {
 
       fetchUserProfile();
     }
-  }, [fetchUserProfile]);
+  }, [fetchUserProfile, user_name]);
 
   if (isLoading) return <LoadingPage />;
 
