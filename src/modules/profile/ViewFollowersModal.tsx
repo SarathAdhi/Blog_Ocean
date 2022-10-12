@@ -35,12 +35,11 @@ export const ViewFollowersModal: React.FC<Props> = ({
         className="flex flex-col gap-4"
       >
         {followers.map((follower) => (
-          <LinkedItem
-            key={follower._id}
-            href={`/profile/${follower.username}`}
-            className="flex items-center justify-between"
-          >
-            <div className="flex items-start gap-2 sm:gap-4">
+          <div key={follower._id} className="flex items-center justify-between">
+            <LinkedItem
+              href={`/profile/${follower.username}`}
+              className="flex items-start gap-2 sm:gap-4"
+            >
               <div className="relative w-12 h-12">
                 <Image
                   src={follower.image}
@@ -58,7 +57,7 @@ export const ViewFollowersModal: React.FC<Props> = ({
                   {follower.bio}
                 </P>
               </div>
-            </div>
+            </LinkedItem>
 
             {follower._id !== user._id && (
               <UserFollowButton
@@ -67,7 +66,7 @@ export const ViewFollowersModal: React.FC<Props> = ({
                 onClick={onClick}
               />
             )}
-          </LinkedItem>
+          </div>
         ))}
       </Modal>
     </>
