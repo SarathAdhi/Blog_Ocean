@@ -26,7 +26,7 @@ export const UserFollowButton: React.FC<Props & Component> = ({
 }) => {
   const { user } = userStore();
 
-  const isUserFollowing = followers.some(
+  const isUserFollowing = user.following.some(
     (follower: User) => follower._id === user._id
   );
 

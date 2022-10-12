@@ -1,3 +1,4 @@
+import LinkedItem from "@components/LinkedItem";
 import { H3, Label, P } from "@components/Text";
 import Modal from "@elements/Modal";
 import { UserFollowButton } from "@elements/UserFollowButton";
@@ -34,7 +35,11 @@ export const ViewFollowersModal: React.FC<Props> = ({
         className="flex flex-col gap-4"
       >
         {followers.map((follower) => (
-          <div key={follower._id} className="flex items-center justify-between">
+          <LinkedItem
+            key={follower._id}
+            href={`/profile/${follower.username}`}
+            className="flex items-center justify-between"
+          >
             <div className="flex items-start gap-2 sm:gap-4">
               <div className="relative w-12 h-12">
                 <Image
@@ -62,7 +67,7 @@ export const ViewFollowersModal: React.FC<Props> = ({
                 onClick={onClick}
               />
             )}
-          </div>
+          </LinkedItem>
         ))}
       </Modal>
     </>
