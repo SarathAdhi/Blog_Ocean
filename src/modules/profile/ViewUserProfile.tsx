@@ -6,7 +6,7 @@ import { User } from "types/User";
 import { ViewFollowersModal } from "./ViewFollowersModal";
 
 type Props = {
-  setUserProfile: (value: User) => void;
+  fetchUserProfile: () => void;
 } & User;
 
 export const ViewUserProfile: React.FC<Props> = ({
@@ -15,7 +15,7 @@ export const ViewUserProfile: React.FC<Props> = ({
   image,
   followers,
   bio,
-  setUserProfile,
+  fetchUserProfile,
 }) => {
   return (
     <>
@@ -40,7 +40,7 @@ export const ViewUserProfile: React.FC<Props> = ({
             <ViewFollowersModal
               labelClassName="text-center sm:text-left !text-base text-gray-400 cursor-pointer hover:underline"
               followers={followers}
-              onClick={(user) => setUserProfile(user)}
+              onClick={fetchUserProfile}
             />
           </div>
         </div>
@@ -48,7 +48,7 @@ export const ViewUserProfile: React.FC<Props> = ({
         <UserFollowButton
           followers={followers}
           userId={_id}
-          onClick={(user) => setUserProfile(user)}
+          onClick={fetchUserProfile}
         />
       </div>
     </>

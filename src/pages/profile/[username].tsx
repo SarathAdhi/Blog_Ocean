@@ -46,7 +46,7 @@ const ViewProfilePage: NextPage = () => {
       title={`${username} | Profile`}
       className="flex flex-col gap-10"
     >
-      <ViewUserProfile {...userProfile} setUserProfile={setUserProfile} />
+      <ViewUserProfile {...userProfile} fetchUserProfile={fetchUserProfile} />
 
       <div className="grid gap-4">
         <UserPosts userId={_id} />
