@@ -35,7 +35,7 @@ export const CommentBox: React.FC<Props> = ({
     user: { _id: userId },
   } = userStore();
 
-  const { username, image, bio } = owner;
+  const { name, username, image, bio } = owner;
 
   const isUserReacted = reactions.find((react) => react.user === userId);
 
@@ -47,14 +47,18 @@ export const CommentBox: React.FC<Props> = ({
             src={image}
             layout="fill"
             className="rounded-full"
-            alt={username}
+            alt={username || name}
           />
         </div>
 
         <div className="w-9/12 flex flex-col items-start">
-          <LinkedItem href={`/profile/${username}`} className="!truncate">
-            {username}
-          </LinkedItem>
+          {username ? (
+            <LinkedItem href={`/profile/${username}`} className="!truncate">
+              {username}
+            </LinkedItem>
+          ) : (
+            <P className="!truncate">{name}</P>
+          )}
 
           <Label className="!truncate">{bio}</Label>
         </div>

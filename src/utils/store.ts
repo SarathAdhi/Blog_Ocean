@@ -24,7 +24,7 @@ export const userStore = create<UserStore>((set) => ({
     }
 
     try {
-      const { user }: { user: User } = await axios.post("/user/profile");
+      const { user }: { user: User } = await axios.get("/user/profile");
 
       set({ user });
     } catch ({ error }) {
