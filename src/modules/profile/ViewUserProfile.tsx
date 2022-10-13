@@ -1,5 +1,5 @@
-import { H2, Label } from "@components/Text";
-import { UserFollowButton } from "@elements/UserFollowButton";
+import { H2, Label } from "@elements/Text";
+import { UserFollowButton } from "@components/UserFollowButton";
 import Image from "next/image";
 import React from "react";
 import { User } from "types/User";

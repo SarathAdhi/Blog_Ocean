@@ -1,5 +1,5 @@
-import LinkedItem from "@components/LinkedItem";
-import { Label, P } from "@components/Text";
+import LinkedItem from "@elements/LinkedItem";
+import { Label, P } from "@elements/Text";
 import { userStore } from "@utils/store";
 import Image from "next/image";
 import React from "react";

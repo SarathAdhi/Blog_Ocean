@@ -30,9 +30,7 @@ export const userStore = create<UserStore>((set) => ({
     } catch ({ error }) {
       localStorage.removeItem("token");
 
-      toast.error(error as string, {
-        position: "top-center",
-      });
+      toast.error(error as string);
     }
   },
 }));

@@ -1,12 +1,12 @@
-import LinkedItem, { LinkProps } from "@components/LinkedItem";
+import LinkedItem, { LinkProps } from "@elements/LinkedItem";
 import { userStore } from "@utils/store";
 import React from "react";
-import { pages } from "./pages";
 import { PencilAltIcon } from "@heroicons/react/outline";
 import { Box, Tooltip } from "@chakra-ui/react";
 import Image from "next/image";
 import { Component } from "types/Page";
 import clsx from "clsx";
+import { pages } from "./pages";
 
 const NavLink: React.FC<LinkProps> = ({ name, href, Icon, className }) => (
   <Tooltip

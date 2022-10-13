@@ -1,7 +1,7 @@
-import LinkedItem from "@components/LinkedItem";
-import { H3, Label, P } from "@components/Text";
-import Modal from "@elements/Modal";
-import { UserFollowButton } from "@elements/UserFollowButton";
+import LinkedItem from "@elements/LinkedItem";
+import { H3, Label, P } from "@elements/Text";
+import Modal from "@components/Modal";
+import { UserFollowButton } from "@components/UserFollowButton";
 import { userStore } from "@utils/store";
 import Image from "next/image";
 import React, { useState } from "react";

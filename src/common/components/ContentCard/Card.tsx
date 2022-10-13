@@ -1,6 +1,7 @@
 import { Box, Heading } from "@chakra-ui/react";
-import LinkedItem from "@components/LinkedItem";
-import { H3, Label } from "@components/Text";
+import LinkedItem from "@elements/LinkedItem";
+import { H3, Label } from "@elements/Text";
+import { formatTitle } from "@utils/format";
 import Image from "next/image";
 import { Content } from "types/Content";
 
@@ -38,7 +39,7 @@ export const BigCard: React.FC<Content> = ({
     </LinkedItem>
 
     <LinkedItem
-      href={`/content/${_id}/${title.toLowerCase().replaceAll(" ", "-")}`}
+      href={`/content/${_id}/${formatTitle(title)}`}
       className="flex flex-col gap-3 max-h-52"
       title={title}
     >
@@ -59,7 +60,7 @@ export const MiniCard: React.FC<Content> = ({ _id, title, createdAt }) => (
     className="w-full border-2 border-transparent border-b-gray-200"
   >
     <LinkedItem
-      href={`/content/${_id}/${title.toLowerCase().replaceAll(" ", "-")}`}
+      href={`/content/${_id}/${formatTitle(title)}`}
       className="flex flex-col gap-2 p-1 pb-2"
     >
       <Heading size={"md"} noOfLines={2}>

@@ -1,9 +1,9 @@
 import { Spinner } from "@chakra-ui/react";
-import LinkedItem from "@components/LinkedItem";
-import { H3, Label } from "@components/Text";
-import { UserFollowButton } from "@elements/UserFollowButton";
+import LinkedItem from "@elements/LinkedItem";
+import { H3, Label } from "@elements/Text";
+import { UserFollowButton } from "@components/UserFollowButton";
 import axios from "@lib/axios";
-import { ContentCard } from "@modules/home/components/ContentCard";
+import { ContentCard } from "@components/ContentCard";
 import { ViewFollowersModal } from "@modules/profile/ViewFollowersModal";
 import clsx from "clsx";
 import Image from "next/image";

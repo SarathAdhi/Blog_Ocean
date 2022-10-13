@@ -1,7 +1,7 @@
-import { LoadingSkeleton } from "@elements/LoadingSkeleton";
+import { LoadingSkeleton } from "@components/LoadingSkeleton";
 import React from "react";
 import { Content } from "types/Content";
-import { ContentCard } from "./components/ContentCard";
+import { ContentCard } from "@components/ContentCard";
 
 type Props = {
   contents: Content[];

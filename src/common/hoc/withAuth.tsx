@@ -1,4 +1,4 @@
-import GoogleAuth from "@elements/GoogleAuth";
+import GoogleAuth from "@components/GoogleAuth";
 import { userStore } from "@utils/store";
 import React from "react";
 

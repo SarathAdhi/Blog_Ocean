@@ -1,7 +1,7 @@
 import { Button } from "@chakra-ui/react";
-import Input from "@components/Input";
-import TextArea from "@components/TextArea";
-import Modal from "@elements/Modal";
+import Input from "@elements/Input";
+import TextArea from "@elements/TextArea";
+import Modal from "@components/Modal";
 import axios, { AxiosResponse } from "@lib/axios";
 import { userStore } from "@utils/store";
 import React, { useEffect } from "react";
@@ -52,7 +52,7 @@ export const EditProfileModal: React.FC<Props> = ({ isOpen, setIsOpen }) => {
 
   useEffect(() => {
     setIsOpen(isProfileCompleted);
-  }, [isProfileCompleted]);
+  }, [isProfileCompleted, setIsOpen]);
 
   return (
     <Modal title="Edit Profile" isOpen={isOpen} setIsOpen={setIsOpen}>

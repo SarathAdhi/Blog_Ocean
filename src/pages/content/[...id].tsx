@@ -1,4 +1,4 @@
-import LoadingPage from "@elements/loading/LoadingPage";
+import LoadingPage from "@components/loading/LoadingPage";
 import PageLayout from "@layouts/PageLayout";
 import axios, { AxiosResponse } from "@lib/axios";
 import { useRouter } from "next/router";
@@ -8,7 +8,7 @@ import { Heading } from "@chakra-ui/react";
 import { MarkdownText } from "@modules/content/MarkdownText";
 import { UserSection } from "@modules/content/UserSection";
 import { NextPage } from "next";
-import { ErrorPage } from "@elements/ErrorPage";
+import { ErrorPage } from "@components/ErrorPage";
 import { CommentSection } from "@modules/content/CommentSection";
 import { ContentActionButtons } from "@modules/content/components/ContentActionButtons";
 

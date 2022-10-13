@@ -6,7 +6,7 @@ import { User } from "types/User";
 import PageLayout from "@layouts/PageLayout";
 import { userStore } from "@utils/store";
 import { useRouter } from "next/router";
-import { H1, H3, Label, P } from "@components/Text";
+import { H1, H3, Label, P } from "@elements/Text";
 
 type ResponseProps = {
   user: User;

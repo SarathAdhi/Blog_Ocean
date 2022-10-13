@@ -1,5 +1,5 @@
-import TextArea from "@components/TextArea";
-import { SlideOver } from "@elements/SlideOver";
+import TextArea from "@elements/TextArea";
+import { SlideOver } from "@components/SlideOver";
 import { PaperAirplaneIcon } from "@heroicons/react/outline";
 import axios from "@lib/axios";
 import React, { useCallback, useEffect, useState } from "react";

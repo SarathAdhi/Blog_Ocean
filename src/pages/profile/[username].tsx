@@ -1,5 +1,6 @@
-import { ErrorPage } from "@elements/ErrorPage";
-import LoadingPage from "@elements/loading/LoadingPage";
+import { Heading } from "@chakra-ui/react";
+import { ErrorPage } from "@components/ErrorPage";
+import LoadingPage from "@components/loading/LoadingPage";
 import PageLayout from "@layouts/PageLayout";
 import axios from "@lib/axios";
 import { UserPosts } from "@modules/profile/UserPosts";
@@ -8,6 +9,7 @@ import { userStore } from "@utils/store";
 import { NextPage } from "next";
 import { useRouter } from "next/router";
 import React, { useCallback, useEffect, useState } from "react";
+import toast from "react-hot-toast";
 import { User } from "types/User";
 
 const ViewProfilePage: NextPage = () => {
