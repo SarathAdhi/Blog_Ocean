@@ -2,7 +2,7 @@ import React from "react";
 import Head from "next/head";
 import { Component } from "types/Page";
 import clsx from "clsx";
-import { Navbar } from "@components/Navbar";
+import { Navbar } from "@components/navbar";
 
 type Props = {
   title: string;
