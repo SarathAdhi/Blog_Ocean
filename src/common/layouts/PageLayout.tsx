@@ -30,8 +30,7 @@ const PageLayout: React.FC<Props & Component> = ({
           property="og:description"
           content="Convert your learning into blog post and help someone out there. Blog Ocean helps developers to resolve or learn something new."
         />
-        {/* <meta name="robots" content="index, follow" /> */}
-        {/* After Production */}
+        <meta name="robots" content="index, follow" />
       </Head>
 
       <main className="min-h-screen bg-slate-100 flex flex-col-reverse md:flex-row justify-between md:justify-center">
