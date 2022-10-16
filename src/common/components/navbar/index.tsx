@@ -23,7 +23,7 @@ const NavLink: React.FC<LinkProps> = ({ name, href, Icon, className }) => (
   </Tooltip>
 );
 
-const Navbar: React.FC<Component> = ({ className }) => {
+export const Navbar: React.FC<Component> = ({ className }) => {
   const { user } = userStore((state) => state);
 
   return (
@@ -71,5 +71,3 @@ const Navbar: React.FC<Component> = ({ className }) => {
     </header>
   );
 };
-
-export default Navbar;
