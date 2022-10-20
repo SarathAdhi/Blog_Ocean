@@ -6,6 +6,7 @@ import { userStore } from "@utils/store";
 import Image from "next/image";
 import React, { useState } from "react";
 import { User } from "types/User";
+import { Heading } from "@chakra-ui/react";
 
 type Props = {
   labelClassName?: string;
@@ -53,9 +54,14 @@ export const ViewFollowersModal: React.FC<Props> = ({
                 <H3 className="!text-lg sm:text-xl">
                   {follower.username || follower.name}
                 </H3>
-                <P className="text-xs sm:text-sm font-medium text-gray-500 -mt-0.5">
+
+                <Heading
+                  as="p"
+                  noOfLines={1}
+                  className="!text-xs sm:!text-sm !font-medium !text-gray-500 -mt-0.5"
+                >
                   {follower.bio}
-                </P>
+                </Heading>
               </div>
             </LinkedItem>
 

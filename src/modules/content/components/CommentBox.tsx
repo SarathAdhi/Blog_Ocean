@@ -1,3 +1,4 @@
+import { Heading } from "@chakra-ui/react";
 import LinkedItem from "@elements/LinkedItem";
 import { Label, P } from "@elements/Text";
 import { userStore } from "@utils/store";
@@ -60,7 +61,13 @@ export const CommentBox: React.FC<Props> = ({
             <P className="!truncate">{name}</P>
           )}
 
-          <Label className="!truncate">{bio}</Label>
+          <Heading
+            as="p"
+            noOfLines={1}
+            className="!text-xs sm:!text-sm !font-medium !text-gray-500 -mt-0.5"
+          >
+            {bio}
+          </Heading>
         </div>
       </div>
 

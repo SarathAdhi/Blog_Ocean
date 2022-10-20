@@ -1,4 +1,4 @@
-import { Button, Divider, Text } from "@chakra-ui/react";
+import { Button, Divider, Heading, Text } from "@chakra-ui/react";
 import PageLayout from "@layouts/PageLayout";
 import React, { useState } from "react";
 import { LogoutIcon, PencilIcon } from "@heroicons/react/outline";
@@ -45,16 +45,15 @@ const ProfilePage: NextPage = () => {
             />
           </div>
 
-          <div className="flex md:block flex-col items-center md:w-9/12">
+          <div className="flex md:grid flex-col items-center md:w-9/12 gap-1">
             <H2 className="truncate">{username}</H2>
 
-            <Text
-              noOfLines={1}
-              fontWeight={"semibold"}
-              className="-mt-1 !text-lg !text-gray-400"
+            <Heading
+              as="p"
+              className="!leading-none text-center md:text-left !font-medium !text-lg !text-gray-400 whitespace-pre-wrap"
             >
               {bio}
-            </Text>
+            </Heading>
           </div>
         </div>
 

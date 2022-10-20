@@ -33,6 +33,7 @@ export const ViewUserProfile: React.FC<Props> = ({
 
           <div className="flex flex-col">
             <H2 className="text-center sm:text-left ">{username}</H2>
+
             <Label className="text-center sm:text-left !text-lg !text-gray-600">
               {bio}
             </Label>

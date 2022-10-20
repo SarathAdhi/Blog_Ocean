@@ -1,4 +1,4 @@
-import { Spinner } from "@chakra-ui/react";
+import { Heading, Spinner } from "@chakra-ui/react";
 import LinkedItem from "@elements/LinkedItem";
 import { H3, Label } from "@elements/Text";
 import { UserFollowButton } from "@components/UserFollowButton";
@@ -59,19 +59,22 @@ export const UserSection: React.FC<Props & Component> = ({
           />
         </div>
 
-        <div className="grid gap-1">
+        <div className="grid gap-2 sm:gap-0.5 lg:gap-2">
           <LinkedItem href={`/profile/${username}`} className="hover:underline">
             <H3 className="w-full font-bold text-center sm:text-left lg:text-center">
               {username}
             </H3>
           </LinkedItem>
 
-          <Label className="-mt-1 flex-col text-center sm:text-left lg:text-center">
+          <Heading
+            as="p"
+            className="!text-xs sm:!text-sm !font-medium !text-gray-600 -mt-1 flex-col text-center sm:text-left lg:text-center whitespace-pre-wrap"
+          >
             {bio}
-          </Label>
+          </Heading>
 
           <ViewFollowersModal
-            labelClassName="md:text-center text-left text-gray-400 cursor-pointer hover:underline"
+            labelClassName="text-center sm:text-left lg:text-center text-gray-400 cursor-pointer hover:underline"
             followers={followers}
             onClick={fetchContent}
           />
