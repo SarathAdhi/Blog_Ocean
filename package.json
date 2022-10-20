@@ -40,6 +40,7 @@
     "react-dom": "18.2.0",
     "react-hot-toast": "^2.4.0",
     "react-quill": "^2.0.0",
+    "xss": "^1.0.14",
     "zustand": "^4.1.1"
   },
   "devDependencies": {

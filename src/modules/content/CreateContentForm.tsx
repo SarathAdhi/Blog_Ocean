@@ -7,6 +7,7 @@ import { formatTitle } from "@utils/format";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
 import toast from "react-hot-toast";
+import xss from "xss";
 
 type HandleSubmitProps = {
   title: string;
@@ -33,9 +34,11 @@ const handleSubmit = async ({
     return;
   }
 
+  const convertToHTML = xss(description); // For security reasons (Cross Site Scripting)
+
   const content = {
     title,
-    description,
+    description: convertToHTML,
   };
 
   const { data, message }: AxiosResponse = await axios.post(
