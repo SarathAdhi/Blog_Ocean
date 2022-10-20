@@ -32,3 +32,21 @@ To learn more about Next.js, take a look at the following resources:
 - [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
 You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+
+# License
+
+This is an open-sourced project under the MIT License
+
+# Contributing
+
+### Feel free to raise an issue and contribute to it.
+
+1. Fork this repo
+2. Create a new branch
+   - Branch name should be `<your name> - <issue>`
+3. Create a PR and add necessary description and screenshot.
+
+# Tutorials
+
+1. [How To: Fork a GitHub Repository & Submit a Pull Request](https://jarv.is/notes/how-to-pull-request-fork-github/).
+2. [Git Commit Message Standard](https://gist.github.com/tonibardina/9290fbc7d605b4f86919426e614fe692)
