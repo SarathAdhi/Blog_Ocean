@@ -10,6 +10,10 @@
 
 - TypeScript
 
+# Backend Repo
+
+[Official backend repo](https://github.com/SarathAdhi/Blog_Ocean_BE)
+
 ## Getting Started
 
 First, run the development server:
