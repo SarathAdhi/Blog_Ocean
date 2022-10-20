@@ -22,7 +22,7 @@ axios.interceptors.response.use(
     // if (response.status === 401) {
     // }
 
-    toast.error(response.data?.error);
+    toast.error(response?.data?.error);
     return Promise.reject(response.data);
   }
 );
