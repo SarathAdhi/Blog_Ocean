@@ -11,6 +11,7 @@ const axios = Axios.create({
   baseURL: process.env.SERVER_BASE_URL,
   headers: {
     "Content-Type": "application/json",
+    "x-api-token": process.env.SERVER_API_TOKEN!,
   },
 });
 
@@ -21,7 +22,7 @@ axios.interceptors.response.use(
     // if (response.status === 401) {
     // }
 
-    toast.error(response.data.error);
+    toast.error(response.data?.error);
     return Promise.reject(response.data);
   }
 );
