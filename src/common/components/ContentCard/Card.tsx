@@ -40,7 +40,8 @@ export const BigCard: React.FC<Content> = ({
 
     <LinkedItem
       href={`/content/${_id}/${formatTitle(title)}`}
-      className="flex flex-col gap-3 max-h-52"
+      className="flex flex-col gap-3"
+      //max-h-52
       title={title}
     >
       <H3 className="!font-bold !leading-none w-full">{title}</H3>

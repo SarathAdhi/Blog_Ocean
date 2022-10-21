@@ -14,7 +14,9 @@ export const ContentCard: React.FC<Content & Props> = ({
   ...rest
 }) => {
   const formatDescription =
-    description.length > 800 ? description.slice(0, 800) + "...." : description;
+    description.length > 500
+      ? description.slice(0, 500) + "<span>....</span>"
+      : description;
 
   const content = {
     ...rest,
