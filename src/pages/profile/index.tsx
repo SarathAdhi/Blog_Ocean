@@ -57,7 +57,7 @@ const ProfilePage: NextPage = () => {
           </div>
         </div>
 
-        <div className="w-full flex justify-center md:justify-end gap-2">
+        <div className="w-full flex justify-center gap-2">
           <Button
             _hover={{ bgColor: "gray.400", color: "black" }}
             bgColor={"gray.500"}

@@ -1,6 +1,11 @@
 import { H1, P } from "@elements/Text";
 import { LoadingSkeleton } from "@components/LoadingSkeleton";
-import { TrashIcon } from "@heroicons/react/outline";
+import {
+  MenuAlt2Icon,
+  MenuAlt3Icon,
+  PencilIcon,
+  TrashIcon,
+} from "@heroicons/react/outline";
 import axios, { AxiosResponse } from "@lib/axios";
 import { ContentCard } from "@components/ContentCard";
 import React, { useCallback, useEffect, useState } from "react";
@@ -10,6 +15,7 @@ import { User } from "types/User";
 import { userStore } from "@utils/store";
 import { Heading } from "@chakra-ui/react";
 import { AlertChakra } from "@components/AlertChakra";
+import LinkedItem from "@components/elements/LinkedItem";
 
 type Props = {
   userId: User["_id"];
@@ -62,13 +68,17 @@ export const UserPosts: React.FC<Props> = ({ userId }) => {
 
         {content.length !== 0 && isUserProfile && (
           <button
-            className="bg-red-600 p-1 rounded-full"
+            className="bg-gray-300 p-1 rounded-full transition"
             onClick={() => {
               setShowAlertBox((pre) => !pre);
               setShowDeleteButton((pre) => !pre);
             }}
           >
-            <TrashIcon className="w-5 h-5 text-white" />
+            {!showDeleteButton ? (
+              <MenuAlt2Icon className="w-6 h-6" />
+            ) : (
+              <MenuAlt3Icon className="w-6 h-6" />
+            )}
           </button>
         )}
       </div>
@@ -93,12 +103,20 @@ export const UserPosts: React.FC<Props> = ({ userId }) => {
                 <ContentCard {...content} />
 
                 {showDeleteButton && (
-                  <button
-                    className="bg-gray-300 w-8 h-8 mt-5 p-1 rounded-full grid place-content-center"
-                    onClick={() => handleDelete(content._id, fetchContent)}
-                  >
-                    <TrashIcon className="w-5 h-5 text-red-600" />
-                  </button>
+                  <div className="grid gap-2">
+                    <button
+                      className="bg-gray-300 w-8 h-8 mt-5 p-1 rounded-full grid place-content-center"
+                      onClick={() => handleDelete(content._id, fetchContent)}
+                    >
+                      <TrashIcon className="w-5 h-5 text-red-600" />
+                    </button>
+
+                    <LinkedItem
+                      href={`/content/edit/${content._id}`}
+                      Icon={PencilIcon}
+                      className="bg-green-500 text-white w-8 h-8 p-1 rounded-full grid place-content-center"
+                    />
+                  </div>
                 )}
               </div>
             ))

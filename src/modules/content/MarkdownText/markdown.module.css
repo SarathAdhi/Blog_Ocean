@@ -25,7 +25,7 @@
 .markdown h4,
 .markdown h5,
 .markdown h6 {
-  word-break: break-all;
+  word-break: normal;
   line-height: normal;
   margin: 0;
   padding: 0;

@@ -9,11 +9,16 @@ type Props = {
 
 export const ContentCard: React.FC<Content & Props> = ({
   isMini = false,
+  description,
   createdAt,
   ...rest
 }) => {
+  const formatDescription =
+    description.length > 800 ? description.slice(0, 800) + "...." : description;
+
   const content = {
     ...rest,
+    description: formatDescription,
     createdAt: formatDate(createdAt),
   };
 

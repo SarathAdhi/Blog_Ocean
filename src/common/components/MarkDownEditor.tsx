@@ -42,7 +42,7 @@ const MarkDownEditor: React.FC<Props> = ({
   return (
     <ReactQuill
       theme="snow"
-      className="h-full max-h-[80vh] bg-white pb-12 rounded-xl overflow-hidden border placeholder:text-gray-500"
+      className="h-full max-h-[80vh] bg-white pb-10 rounded-xl overflow-hidden border placeholder:text-gray-500"
       value={value}
       onChange={setValue}
       modules={modules}
