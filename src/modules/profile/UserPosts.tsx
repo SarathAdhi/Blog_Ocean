@@ -89,7 +89,7 @@ export const UserPosts: React.FC<Props> = ({ userId }) => {
           isOpen={showAlertBox}
           setIsOpen={setShowAlertBox}
         >
-          Clicking on the delete button will delete your post permanently.
+          Clicking on the delete button will delete your content permanently.
         </AlertChakra>
       )}
 
