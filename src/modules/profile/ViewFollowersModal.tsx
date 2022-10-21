@@ -67,7 +67,7 @@ export const ViewFollowersModal: React.FC<Props> = ({
 
             {follower._id !== user._id && (
               <UserFollowButton
-                followers={followers}
+                followers={follower.followers}
                 userId={follower._id}
                 onClick={onClick}
               />
