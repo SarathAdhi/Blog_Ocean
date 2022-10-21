@@ -1,6 +1,6 @@
 import React from "react";
-import "react-quill/dist/quill.snow.css";
 import clsx from "clsx";
+import "react-quill/dist/quill.snow.css";
 import styles from "./markdown.module.css";
 
 export const MarkdownText = ({ description }: { description: string }) => {

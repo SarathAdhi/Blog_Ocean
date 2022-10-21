@@ -7,36 +7,27 @@ import "react-quill/dist/quill.snow.css";
 
 const modules = {
   toolbar: [
-    [{ size: ["small", false, "large", "huge"] }],
+    [{ header: [1, 2, false] }],
     [{ script: "sub" }, { script: "super" }],
-    [{ indent: "-1" }, { indent: "+1" }],
     ["bold", "italic", "underline", "strike", "blockquote", "code-block"],
     [{ list: "ordered" }, { list: "bullet" }],
     ["link", "image"],
-    [{ font: [] }],
-    [{ align: [] }],
-    [{ color: [] }, { background: [] }],
   ],
 };
 
 const formats = [
-  "size",
+  "header",
   "bold",
   "italic",
   "underline",
   "strike",
   "blockquote",
   "code-block",
-  "indent",
   "list",
   "script",
   "bullet",
   "link",
   "image",
-  "font",
-  "align",
-  "color",
-  "background",
 ];
 
 type Props = {
