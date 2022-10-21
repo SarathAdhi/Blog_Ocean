@@ -7,24 +7,36 @@ import "react-quill/dist/quill.snow.css";
 
 const modules = {
   toolbar: [
-    [{ header: [1, 2, false] }],
-    ["bold", "italic", "underline", "strike", "blockquote"],
+    [{ size: ["small", false, "large", "huge"] }],
+    [{ script: "sub" }, { script: "super" }],
+    [{ indent: "-1" }, { indent: "+1" }],
+    ["bold", "italic", "underline", "strike", "blockquote", "code-block"],
     [{ list: "ordered" }, { list: "bullet" }],
     ["link", "image"],
+    [{ font: [] }],
+    [{ align: [] }],
+    [{ color: [] }, { background: [] }],
   ],
 };
 
 const formats = [
-  "header",
+  "size",
   "bold",
   "italic",
   "underline",
   "strike",
   "blockquote",
+  "code-block",
+  "indent",
   "list",
+  "script",
   "bullet",
   "link",
   "image",
+  "font",
+  "align",
+  "color",
+  "background",
 ];
 
 type Props = {
@@ -42,7 +54,7 @@ const MarkDownEditor: React.FC<Props> = ({
   return (
     <ReactQuill
       theme="snow"
-      className="h-full max-h-[80vh] bg-white pb-10 rounded-xl overflow-hidden border placeholder:text-gray-500"
+      className="h-full max-h-[80vh] bg-white pb-11 rounded-xl overflow-hidden placeholder:text-gray-500"
       value={value}
       onChange={setValue}
       modules={modules}

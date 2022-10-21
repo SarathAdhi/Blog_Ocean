@@ -29,15 +29,11 @@ const handleSubmit = async ({
   router,
 }: HandleSubmitProps) => {
   if (!title) {
-    toast.error("Title is required");
-
-    return;
+    throw "Title is required";
   }
 
   if (!description) {
-    toast.error("Content is required");
-
-    return;
+    throw "Content is required";
   }
 
   const convertToHTML = xss(description); // For security reasons (Cross Site Scripting)
@@ -49,7 +45,7 @@ const handleSubmit = async ({
 
   if (!contentId) {
     const { data, message }: AxiosResponse = await axios.post(
-      "/content/",
+      "/content/create",
       content
     );
 
@@ -112,12 +108,14 @@ export const CreateContentForm: React.FC<Props> = ({
         _hover={{ bgColor: "green.400" }}
         _active={{ bgColor: "green.600" }}
         onClick={() =>
-          handleSubmit({ title, description, contentId, router }).then(() => {
-            if (!contentId) {
-              setTitle("");
-              setDescription("");
-            }
-          })
+          handleSubmit({ title, description, contentId, router })
+            .then(() => {
+              if (!contentId) {
+                setTitle("");
+                setDescription("");
+              }
+            })
+            .catch((err) => toast.error(err))
         }
       >
         {contentId ? "Update" : "Publish"}
