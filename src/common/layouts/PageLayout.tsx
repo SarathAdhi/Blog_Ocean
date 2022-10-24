@@ -6,11 +6,17 @@ import { Navbar } from "@components/navbar";
 
 type Props = {
   title: string;
+  description?: string;
+  publishTime?: string;
+  author?: string;
   RightSideBar?: React.ReactNode;
 };
 
 const PageLayout: React.FC<Props & Component> = ({
   title,
+  description,
+  publishTime,
+  author,
   className,
   children,
   RightSideBar,
@@ -23,13 +29,47 @@ const PageLayout: React.FC<Props & Component> = ({
           name="description"
           content="Convert your learning into blog post and help someone out there. Blog Ocean helps developers to resolve or learn something new."
         />
-        <meta name="og:title" property="og:title" content={title} />
-        <meta name="og:description" property="og:description" content={title} />
+        <meta
+          name="og:title"
+          property="og:title"
+          content={title + " | Blog Ocean"}
+        />
+        <meta data-rh="true" name="title" content={title + " | Blog Ocean"} />
+
+        {publishTime && (
+          <meta
+            data-rh="true"
+            property="article:published_time"
+            content={publishTime}
+          />
+        )}
+
+        <meta
+          data-rh="true"
+          name="description"
+          content={
+            description ||
+            "Convert your learning into blog post and help someone out there. Blog Ocean helps developers to resolve or learn something new."
+          }
+        />
+
         <meta
           name="og:description"
           property="og:description"
-          content="Convert your learning into blog post and help someone out there. Blog Ocean helps developers to resolve or learn something new."
+          content={
+            description ||
+            "Blog Ocean is an open platform for all developers to learn, grow and teach everyone around the world and share their experiences."
+          }
         />
+
+        <meta data-rh="true" property="og:url" content={window.location.href} />
+        <meta
+          data-rh="true"
+          property="al:web:url"
+          content={window.location.href}
+        />
+        {author && <meta data-rh="true" name="author" content={author} />}
+
         <meta name="robots" content="index, follow" />
       </Head>
 

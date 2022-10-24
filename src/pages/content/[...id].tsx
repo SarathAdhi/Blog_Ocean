@@ -11,6 +11,7 @@ import { NextPage } from "next";
 import { ErrorPage } from "@components/ErrorPage";
 import { CommentSection } from "@modules/content/CommentSection";
 import { ContentActionButtons } from "@modules/content/components/ContentActionButtons";
+import { formatSeoDescription } from "@utils/format";
 
 const ViewContentPage: NextPage = () => {
   const router = useRouter();
@@ -39,11 +40,18 @@ const ViewContentPage: NextPage = () => {
   if (!content)
     return <ErrorPage title="Requested Content not found" error="404" />;
 
-  const { title, description, likes, comment } = content;
+  const { title, description, likes, comment, owner } = content;
+
+  const seo = {
+    title: `${title} | By ${owner.name}`,
+    description: formatSeoDescription(description),
+    author: owner.name,
+    publishTime: content.createdAt,
+  };
 
   return (
     <PageLayout
-      title={title}
+      {...seo}
       className="flex flex-col items-center gap-5 box-border"
       RightSideBar={
         <UserSection

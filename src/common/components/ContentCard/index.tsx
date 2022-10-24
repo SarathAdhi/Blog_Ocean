@@ -1,4 +1,8 @@
-import { formatDate, formatTitle } from "@utils/format";
+import {
+  formatContentDescription,
+  formatDate,
+  formatTitle,
+} from "@utils/format";
 import React from "react";
 import { Content } from "types/Content";
 import { BigCard, MiniCard } from "./Card";
@@ -15,7 +19,7 @@ export const ContentCard: React.FC<Content & Props> = ({
 }) => {
   const formatDescription =
     description.length > 500
-      ? description?.split("<img ")[0].slice(0, 500) + "<span>....</span>"
+      ? formatContentDescription(description) + "<span>....</span>"
       : description;
 
   const content = {
