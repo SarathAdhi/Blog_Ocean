@@ -2,7 +2,7 @@ import { User } from "./User";
 
 export type Reaction = {
   _id?: "string";
-  user: string;
+  user: User;
   emoji: string;
 };
 

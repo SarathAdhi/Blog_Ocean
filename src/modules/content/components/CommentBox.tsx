@@ -1,4 +1,5 @@
 import { Heading } from "@chakra-ui/react";
+import Modal from "@components/Modal";
 import LinkedItem from "@elements/LinkedItem";
 import { Label, P } from "@elements/Text";
 import { userStore } from "@utils/store";
@@ -18,6 +19,7 @@ type Props = {
   comment: string;
   createdAt: string;
   fetchComments: () => void;
+  onClick?: () => void;
 };
 
 export const CommentBox: React.FC<Props> = ({
@@ -28,6 +30,7 @@ export const CommentBox: React.FC<Props> = ({
   reactions,
   createdAt,
   fetchComments,
+  onClick,
 }) => {
   const date = `${new Date(createdAt)}`.split(" ").slice(0, 4).join(" ");
   const time = `${new Date(createdAt)}`.split(" ").slice(4, 5).join(" ");
@@ -38,56 +41,64 @@ export const CommentBox: React.FC<Props> = ({
 
   const { name, username, image, bio } = owner;
 
-  const isUserReacted = reactions.find((react) => react.user === userId);
+  const isUserReacted = reactions.find((react) => react.user?._id === userId);
 
   return (
-    <div className="w-full flex flex-col gap-2 pt-4 first:!pt-0">
-      <div className="flex items-center gap-2">
-        <div className="relative w-10 h-10">
-          <Image
-            src={image}
-            layout="fill"
-            className="rounded-full"
-            alt={username || name}
-          />
+    <>
+      <div className="w-full flex flex-col gap-2 pt-4 first:!pt-0">
+        <div className="flex items-center gap-2">
+          <div className="relative w-10 h-10">
+            <Image
+              src={image}
+              layout="fill"
+              className="rounded-full"
+              alt={username || name}
+            />
+          </div>
+
+          <div className="w-9/12 flex flex-col items-start">
+            {username ? (
+              <LinkedItem href={`/profile/${username}`} className="!truncate">
+                {username}
+              </LinkedItem>
+            ) : (
+              <P className="!truncate">{name}</P>
+            )}
+
+            <Heading
+              as="p"
+              noOfLines={1}
+              className="!text-xs sm:!text-sm !font-medium !text-gray-500 -mt-0.5"
+            >
+              {bio}
+            </Heading>
+          </div>
         </div>
 
-        <div className="w-9/12 flex flex-col items-start">
-          {username ? (
-            <LinkedItem href={`/profile/${username}`} className="!truncate">
-              {username}
-            </LinkedItem>
-          ) : (
-            <P className="!truncate">{name}</P>
-          )}
+        <div className="grid gap-2">
+          <P className="!text-base whitespace-pre-wrap">{comment}</P>
 
-          <Heading
-            as="p"
-            noOfLines={1}
-            className="!text-xs sm:!text-sm !font-medium !text-gray-500 -mt-0.5"
-          >
-            {bio}
-          </Heading>
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-1">
+              <EmojiPopOver
+                isUserReacted={isUserReacted}
+                commentId={commentId}
+                commentCollectionId={_id}
+                fetchComments={fetchComments}
+              />
+
+              <button className="mt-1 text-xs underline" onClick={onClick}>
+                View Reactions
+              </button>
+            </div>
+
+            <Label className="text-end flex items-center gap-x-2 flex-wrap justify-end">
+              <span>{date}</span>
+              <span>{time}</span>
+            </Label>
+          </div>
         </div>
       </div>
-
-      <div className="grid gap-2">
-        <P className="!text-base whitespace-pre-wrap">{comment}</P>
-
-        <div className="flex items-center justify-between">
-          <EmojiPopOver
-            isUserReacted={isUserReacted}
-            commentId={commentId}
-            commentCollectionId={_id}
-            fetchComments={fetchComments}
-          />
-
-          <Label className="text-end flex items-center gap-x-2 flex-wrap justify-end">
-            <span>{date}</span>
-            <span>{time}</span>
-          </Label>
-        </div>
-      </div>
-    </div>
+    </>
   );
 };

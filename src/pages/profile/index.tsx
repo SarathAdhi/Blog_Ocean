@@ -34,7 +34,7 @@ const ProfilePage: NextPage = () => {
         title="My Profile"
         className="flex flex-col items-start gap-5"
       >
-        <div className="z-40 sticky top-14 py-4 bg-white group w-full flex flex-col md:flex-row items-center gap-1 md:gap-4 rounded-lg">
+        <div className="z-40 sticky top-14 md:top-0 py-4 bg-white group w-full flex flex-col md:flex-row items-center gap-1 md:gap-4 rounded-lg">
           <div className="relative w-20 h-20 md:w-32 md:h-32">
             <Image
               src={image}
