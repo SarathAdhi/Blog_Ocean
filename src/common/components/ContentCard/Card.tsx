@@ -47,7 +47,7 @@ export const BigCard: React.FC<Content> = ({
       <H3 className="!font-bold !leading-none w-full">{title}</H3>
 
       <div
-        className="truncate !text-sm"
+        className="!text-sm"
         dangerouslySetInnerHTML={{ __html: description }}
       />
     </LinkedItem>
