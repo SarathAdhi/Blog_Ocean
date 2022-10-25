@@ -112,7 +112,10 @@ export const CommentSection: React.FC<Props> = ({
       >
         <div className="w-full grid gap-4 pb-5">
           {showReactions.reactions.map((reaction) => (
-            <div className="flex items-center justify-between gap-2">
+            <div
+              key={reaction._id}
+              className="flex items-center justify-between gap-2"
+            >
               <LinkedItem
                 href={`/profile/${reaction.user.username}`}
                 className="w-[90%] flex items-center gap-2"
