@@ -122,18 +122,30 @@
 }
 .markdown .ql_snow code,
 .markdown .ql_snow pre {
-  background-color: #f0f0f0;
-  border-radius: 3px;
+  background-color: #ccc;
+  border-radius: 5px;
 }
 .markdown .ql_snow pre {
   white-space: pre-wrap;
   margin-bottom: 5px;
   margin-top: 5px;
-  padding: 5px 10px;
+  padding: 10px;
 }
 .markdown .ql_snow code {
   font-size: 85%;
   padding: 2px 4px;
+}
+
+@media screen and (max-width: 500px) {
+  .markdown .ql_snow pre {
+    font-size: 15px !important;
+  }
+}
+
+@media screen and (max-width: 300px) {
+  .markdown .ql_snow pre {
+    font-size: 10px !important;
+  }
 }
 
 .markdown .ql_snow img {
