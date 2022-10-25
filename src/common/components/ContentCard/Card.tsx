@@ -14,7 +14,7 @@ export const BigCard: React.FC<Content> = ({
 }) => (
   <Box
     as={"article"}
-    className="py-4 group w-full flex flex-col gap-4 overflow-hidden border-b-2 border-gray-200 rounded-sm duration-300 hover:border-gray-400"
+    className="py-4 group w-full grid gap-4 overflow-hidden border-b-2 border-gray-200 rounded-sm duration-300 hover:border-gray-400"
   >
     <LinkedItem
       href={`/profile/${owner.username}`}
@@ -40,7 +40,7 @@ export const BigCard: React.FC<Content> = ({
 
     <LinkedItem
       href={`/content/${_id}/${formatTitle(title)}`}
-      className="flex flex-col gap-3"
+      className="w-full grid gap-3"
       //max-h-52
       title={title}
     >

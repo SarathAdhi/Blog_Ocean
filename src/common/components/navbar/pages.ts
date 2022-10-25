@@ -1,4 +1,4 @@
-import { HomeIcon } from "@heroicons/react/outline";
+import { HomeIcon, PencilAltIcon, SearchIcon } from "@heroicons/react/outline";
 
 export const pages = [
   {
@@ -7,7 +7,14 @@ export const pages = [
     Icon: HomeIcon,
   },
   {
-    name: "About",
-    href: "/about",
+    name: "Search",
+    href: "",
+    Icon: SearchIcon,
+    isSearch: true,
+  },
+  {
+    name: "Create",
+    href: "/content/create",
+    Icon: PencilAltIcon,
   },
 ];

@@ -2,12 +2,18 @@ import PageLayout from "@layouts/PageLayout";
 import axios from "@lib/axios";
 import { HomeComponent } from "@modules/home";
 import type { NextPage } from "next";
+import { useRouter } from "next/router";
 import { useCallback, useEffect, useState } from "react";
 import { Content } from "types/Content";
 
 const Home: NextPage = () => {
+  const router = useRouter();
   const [contents, setContents] = useState<Content[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
+
+  const { q } = router.query;
+
+  console.log(q);
 
   // useCallback is used here to isolate this function.This will not automatically run on every render.
   // performance improvement
@@ -22,8 +28,12 @@ const Home: NextPage = () => {
   }, [fetchContents]);
 
   return (
-    <PageLayout title="Home" className="w-full">
-      <HomeComponent contents={contents} isLoading={isLoading} />
+    <PageLayout title="Home">
+      <HomeComponent
+        contents={contents}
+        isLoading={isLoading}
+        searchQuery={q as string}
+      />
     </PageLayout>
   );
 };

@@ -3,6 +3,8 @@ import Head from "next/head";
 import { Component } from "types/Page";
 import clsx from "clsx";
 import { Navbar } from "@components/navbar";
+import { useRouter } from "next/router";
+import { TopMobileNavbar } from "@components/navbar/TopMobileNavbar";
 
 type Props = {
   title: string;
@@ -21,6 +23,8 @@ const PageLayout: React.FC<Props & Component> = ({
   children,
   RightSideBar,
 }) => {
+  const { asPath } = useRouter();
+
   return (
     <>
       <Head>
@@ -62,32 +66,40 @@ const PageLayout: React.FC<Props & Component> = ({
           }
         />
 
-        <meta data-rh="true" property="og:url" content={window.location.href} />
+        <meta
+          data-rh="true"
+          property="og:url"
+          content={"http://blog-ocean.vercel.app" + asPath}
+        />
         <meta
           data-rh="true"
           property="al:web:url"
-          content={window.location.href}
+          content={"http://blog-ocean.vercel.app" + asPath}
         />
         {author && <meta data-rh="true" name="author" content={author} />}
 
         <meta name="robots" content="index, follow" />
       </Head>
 
-      <main className="min-h-screen bg-slate-100 flex flex-col-reverse md:flex-row justify-between md:justify-center">
-        <Navbar className="col-span-1" />
+      <main className="min-h-screen bg-white flex flex-col">
+        <TopMobileNavbar />
 
-        <div className="flex-1 w-full max-w-[1440px] grid lg:grid-cols-15">
-          <div
-            className={clsx(
-              "w-full flex-1 p-2 md:p-5",
-              RightSideBar ? "col-span-11 xl:col-span-12" : "col-span-15",
-              className
-            )}
-          >
-            {children}
+        <div className="flex-1 flex flex-col-reverse md:flex-row justify-between md:justify-center">
+          <Navbar className="col-span-1" />
+
+          <div className="flex-1 w-full max-w-[1440px] grid lg:grid-cols-15">
+            <div
+              className={clsx(
+                "w-full flex-1 p-2 md:p-5",
+                RightSideBar ? "col-span-11 xl:col-span-12" : "col-span-15",
+                className
+              )}
+            >
+              {children}
+            </div>
+
+            {RightSideBar && RightSideBar}
           </div>
-
-          {RightSideBar && RightSideBar}
         </div>
       </main>
     </>

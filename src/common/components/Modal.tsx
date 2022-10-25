@@ -1,5 +1,4 @@
 import {
-  Button,
   Heading,
   Modal as ChakraModal,
   ModalBody,
@@ -12,8 +11,9 @@ import {
 import { Component } from "types/Page";
 
 type Props = {
-  title: string;
+  title?: string;
   isOpen: boolean;
+  isCentered?: boolean;
   setIsOpen: (value: boolean) => void;
   ModalFooterChildren?: React.FC;
 };
@@ -25,10 +25,11 @@ const Modal: React.FC<Props & Component> = ({
   children,
   ModalFooterChildren,
   className,
+  isCentered = true,
 }) => {
   return (
     <ChakraModal
-      isCentered
+      isCentered={isCentered}
       onClose={() => setIsOpen(false)}
       isOpen={isOpen}
       motionPreset="scale"
@@ -37,17 +38,22 @@ const Modal: React.FC<Props & Component> = ({
     >
       <ModalOverlay />
       <ModalContent mx={{ base: "10px", sm: "20px" }}>
-        <ModalHeader>
-          <Heading size={"lg"}>{title}</Heading>
-        </ModalHeader>
-
-        <ModalCloseButton />
+        {title && (
+          <>
+            <ModalHeader>
+              <Heading size={"lg"}>{title}</Heading>
+            </ModalHeader>
+            <ModalCloseButton />
+          </>
+        )}
 
         <ModalBody className={className}>{children}</ModalBody>
 
-        <ModalFooter>
-          {ModalFooterChildren && <ModalFooterChildren />}
-        </ModalFooter>
+        {ModalFooterChildren && (
+          <ModalFooter>
+            <ModalFooterChildren />
+          </ModalFooter>
+        )}
       </ModalContent>
     </ChakraModal>
   );

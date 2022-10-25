@@ -1,8 +1,4 @@
-import {
-  formatContentDescription,
-  formatDate,
-  formatTitle,
-} from "@utils/format";
+import { formatContentDescription, formatDate } from "@utils/format";
 import React from "react";
 import { Content } from "types/Content";
 import { BigCard, MiniCard } from "./Card";
