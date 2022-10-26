@@ -63,7 +63,6 @@ export const CommentSection: React.FC<Props> = ({
                 commentId={comments._id}
                 fetchComments={fetchComments}
                 onClick={() => {
-                  console.log(comment.reactions);
                   setShowReactions({
                     reactions: comment.reactions,
                     isOpen: !showReactions.isOpen,

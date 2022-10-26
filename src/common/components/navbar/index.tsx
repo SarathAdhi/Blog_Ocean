@@ -1,24 +1,12 @@
 import LinkedItem, { LinkProps } from "@elements/LinkedItem";
 import { userStore } from "@utils/store";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import { Component } from "types/Page";
 import clsx from "clsx";
 import { pages } from "./pages";
 import Modal from "@components/Modal";
-import Input from "@components/elements/Input";
 import { useRouter } from "next/router";
-
-// <Tooltip
-//   label={name}
-//   placement="right"
-//   marginTop={className?.includes("mt-3") ? "4" : ""}
-//   marginLeft="1.5"
-// >
-// <Box>
-//
-//</Box>
-//</Tooltip>
 
 type NavLinkProps = {
   setShowSearchModal: (isOpen: boolean) => void;
@@ -53,13 +41,17 @@ const NavLink: React.FC<LinkProps & NavLinkProps> = ({
 export const Navbar: React.FC<Component> = ({ className }) => {
   const { user } = userStore();
   const [showSearchModal, setShowSearchModal] = useState(false);
+  const [searchInput, setSearchInput] = useState("");
 
   const router = useRouter();
-  const searchQuery = router.query.q || "";
 
-  // useEffect(() => {
-  //   router.replace(searchQuery ? `?q=${searchQuery}` : "/");
-  // }, []);
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") setShowSearchModal(false);
+    else if (e.key === "k" && e.ctrlKey) {
+      e.preventDefault();
+      setShowSearchModal(true);
+    }
+  });
 
   return (
     <>
@@ -127,11 +119,16 @@ export const Navbar: React.FC<Component> = ({ className }) => {
       >
         <input
           type={"text"}
-          value={searchQuery}
-          className="p-3 text-lg w-full focus:outline-none"
-          placeholder="Search..."
-          onChange={({ target }) => router.replace(`?q=${target.value}`)}
-          onKeyUp={({ key }) => key === "Enter" && setShowSearchModal(false)}
+          value={searchInput}
+          className="p-3 text-base font-medium w-full focus:outline-none"
+          placeholder="Ctrl K to Search..."
+          onChange={({ target }) => setSearchInput(target.value)}
+          onKeyUp={({ key }) => {
+            if (key === "Enter") {
+              setShowSearchModal(false);
+              router.replace(`/?q=${searchInput}`);
+            }
+          }}
         />
 
         {/* <div>hello</div> */}

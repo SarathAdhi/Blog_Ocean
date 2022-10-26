@@ -13,8 +13,6 @@ const Home: NextPage = () => {
 
   const { q } = router.query;
 
-  console.log(q);
-
   // useCallback is used here to isolate this function.This will not automatically run on every render.
   // performance improvement
   const fetchContents = useCallback(async () => {
