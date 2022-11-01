@@ -6,10 +6,15 @@ import { Toaster } from "react-hot-toast";
 import { userStore } from "@utils/store";
 import { useCallback, useEffect, useState } from "react";
 import LoadingPage from "@components/loading/LoadingPage";
+import ReactGA from "react-ga";
 
-const clientId = process.env.GOOGLE_CLIENT_ID!;
+const CLIENT_ID = process.env.GOOGLE_CLIENT_ID!;
+
+const TRACKING_ID = process.env.GOOGLE_ANALYTICS_TRACKING_ID!;
 
 function MyApp({ Component, pageProps }: AppProps) {
+  ReactGA.initialize(TRACKING_ID);
+
   const { getProfile } = userStore((state) => state);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -22,12 +27,13 @@ function MyApp({ Component, pageProps }: AppProps) {
 
   useEffect(() => {
     fetchUser();
+    ReactGA.pageview(window.location.pathname + window.location.search);
   }, [fetchUser]);
 
   if (isLoading) return <LoadingPage />;
 
   return (
-    <GoogleOAuthProvider clientId={clientId}>
+    <GoogleOAuthProvider clientId={CLIENT_ID}>
       <ChakraProvider>
         <Component {...pageProps} />
 
