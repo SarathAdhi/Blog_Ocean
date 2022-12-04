@@ -18,3 +18,18 @@
 ::-webkit-scrollbar-thumb:hover {
   background: #777;
 }
+
+.mantine-1qycoz3 .ql-editor {
+  width: 100%;
+  display: grid;
+  padding: 10px;
+}
+.mantine-1qycoz3 pre {
+  width: 100%;
+  overflow: auto !important;
+  display: none;
+}
+
+.mantine-1qycoz3 ::-webkit-scrollbar {
+  height: 3px !important;
+}

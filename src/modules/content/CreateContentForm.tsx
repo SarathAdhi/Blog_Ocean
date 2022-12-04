@@ -5,9 +5,10 @@ import MarkDownEditor from "@components/MarkDownEditor";
 import axios, { AxiosResponse } from "@lib/axios";
 import { formatTitle } from "@utils/format";
 import { useRouter } from "next/router";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import toast from "react-hot-toast";
 import xss from "xss";
+import { userStore } from "@utils/store";
 
 type Props = {
   title?: string;
@@ -74,13 +75,28 @@ export const CreateContentForm: React.FC<Props> = ({
   const [title, setTitle] = useState(_title);
   const [description, setDescription] = useState(_description);
 
+  const { user } = userStore();
+
+  const isLogin = !!user?._id;
+  const isProfileComplete = !!(user?.bio && user?.username);
+
+  useEffect(() => {
+    if (!isLogin) {
+      toast.error("Authentication required.");
+      router.replace("/profile");
+    } else if (!isProfileComplete) {
+      toast.error("Please complete your profile.");
+      router.push("/profile");
+    }
+  }, [router.isReady]);
+
   return (
     <div className="h-full flex flex-col items-end gap-2">
       <div className="w-full h-full flex flex-col gap-2 md:gap-4">
         <div className="w-full">
           <Input
             placeholder="Enter your title"
-            fontWeight="semibold"
+            fontWeight="bold"
             fontSize={"2xl"}
             paddingY={"6"}
             maxLength={100}
@@ -108,14 +124,12 @@ export const CreateContentForm: React.FC<Props> = ({
         _hover={{ bgColor: "green.400" }}
         _active={{ bgColor: "green.600" }}
         onClick={() =>
-          handleSubmit({ title, description, contentId, router })
-            .then(() => {
-              if (!contentId) {
-                setTitle("");
-                setDescription("");
-              }
-            })
-            .catch((err) => toast.error(err))
+          handleSubmit({ title, description, contentId, router }).then(() => {
+            if (!contentId) {
+              setTitle("");
+              setDescription("");
+            }
+          })
         }
       >
         {contentId ? "Update" : "Publish"}
