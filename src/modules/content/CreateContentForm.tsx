@@ -37,11 +37,12 @@ const handleSubmit = async ({
     throw "Content is required";
   }
 
-  const convertToHTML = xss(description); // For security reasons (Cross Site Scripting)
+  // const convertToHTML = xss(description); // For security reasons (Cross Site Scripting)
+  // To embbed links, we have to disable this feature
 
   const content = {
     title,
-    description: convertToHTML,
+    description,
   };
 
   if (!contentId) {
