@@ -32,3 +32,12 @@
 .mantine-1qycoz3 ::-webkit-scrollbar {
   height: 3px !important;
 }
+
+.mantine-1qycoz3 ol {
+  list-style: decimal !important;
+}
+
+.mantine-1qycoz3 a {
+  color: rgb(62, 62, 238) !important;
+  text-decoration: underline;
+}
