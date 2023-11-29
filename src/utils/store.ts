@@ -27,7 +27,7 @@ export const userStore = create<UserStore>((set) => ({
       const { user }: { user: User } = await axios.get("/user/profile");
 
       set({ user });
-    } catch ({ error }) {
+    } catch ({ error }: any) {
       localStorage.removeItem("token");
 
       toast.error(error as string);

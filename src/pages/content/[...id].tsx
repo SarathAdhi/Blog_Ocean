@@ -1,11 +1,10 @@
-import LoadingPage from "@components/loading/LoadingPage";
 import PageLayout from "@layouts/PageLayout";
 import axios, { AxiosResponse } from "@lib/axios";
 import { useRouter } from "next/router";
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useState } from "react";
 import { Content } from "types/Content";
 import { UserSection } from "@modules/content/UserSection";
-import { NextPage } from "next";
+import { GetServerSidePropsContext, NextPage } from "next";
 import { ErrorPage } from "@components/ErrorPage";
 import { formatSeoDescription } from "@utils/format";
 import { CommentSection } from "@modules/content/CommentSection";
@@ -23,15 +22,42 @@ import { DotsVerticalIcon } from "@heroicons/react/outline";
 import LinkedItem from "@components/elements/LinkedItem";
 import { userStore } from "@utils/store";
 
-const ViewContentPage: NextPage = () => {
+export async function getServerSideProps(context: GetServerSidePropsContext) {
+  const id = context.query?.id;
+  const contentId = id && (id[0] as string);
+
+  let content: Content | null = null;
+
+  try {
+    const response = await fetch(
+      process.env.PUBLIC_SERVER_BASE_URL + `/content?id=${contentId}`,
+      {
+        headers: {
+          "Content-Type": "application/json",
+          "x-api-token": process.env.PUBLIC_SERVER_API_TOKEN!,
+        },
+      }
+    );
+
+    content = await response.json();
+
+    console.log({ content });
+  } catch (error) {
+    console.log(error);
+  }
+
+  return { props: { content, id } };
+}
+
+const ViewContentPage: NextPage<{ content: Content | null; id: string }> = ({
+  content: _content,
+  id,
+}) => {
   const router = useRouter();
-  const [content, setContent] = useState<Content | null>(null);
-  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [content, setContent] = useState<Content | null>(_content);
   const [isCommentSectionOpen, setIsCommentSectionOpen] =
     useState<boolean>(false);
   const { user } = userStore();
-
-  const { id } = router.query;
 
   const contentId = id && (id[0] as string);
 
@@ -41,14 +67,7 @@ const ViewContentPage: NextPage = () => {
     );
 
     setContent(data);
-    setIsLoading(false);
   }, []);
-
-  useEffect(() => {
-    if (contentId) fetchContent(contentId);
-  }, [fetchContent, contentId]);
-
-  if (!contentId || isLoading) return <LoadingPage />;
 
   if (!content)
     return <ErrorPage title="Requested Content not found" error="404" />;

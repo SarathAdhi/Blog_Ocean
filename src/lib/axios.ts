@@ -8,10 +8,10 @@ export type AxiosResponse = {
 };
 
 const axios = Axios.create({
-  baseURL: process.env.SERVER_BASE_URL,
+  baseURL: process.env.PUBLIC_SERVER_BASE_URL,
   headers: {
     "Content-Type": "application/json",
-    "x-api-token": process.env.SERVER_API_TOKEN!,
+    "x-api-token": process.env.PUBLIC_SERVER_API_TOKEN!,
   },
 });
 
@@ -23,7 +23,7 @@ axios.interceptors.response.use(
     // }
 
     toast.error(response?.data?.error);
-    return Promise.reject(response.data);
+    return Promise.reject(response);
   }
 );
 

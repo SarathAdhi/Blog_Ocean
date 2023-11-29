@@ -7,9 +7,9 @@ const nextConfig = {
   },
   env: {
     MONGODB_URL: process.env.MONGODB_URL,
-    SERVER_BASE_URL: process.env.SERVER_BASE_URL,
+    PUBLIC_SERVER_BASE_URL: process.env.PUBLIC_SERVER_BASE_URL,
     GOOGLE_CLIENT_ID: process.env.GOOGLE_CLIENT_ID,
-    SERVER_API_TOKEN: process.env.SERVER_API_TOKEN,
+    PUBLIC_SERVER_API_TOKEN: process.env.PUBLIC_SERVER_API_TOKEN,
     GOOGLE_ANALYTICS_TRACKING_ID: process.env.GOOGLE_ANALYTICS_TRACKING_ID,
   },
 };
